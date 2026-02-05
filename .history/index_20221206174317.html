@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>x-tool</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+  </head>
+  <body>
+    <container>
+      <div
+      <div class="header">
+          <img class="logo" src="images/logo.svg">
+      </div>
+      <div class="tools">
+        <!-- DODAWACZ ZER DO SKU -->
+        <div class="box generator__sku">
+          <h1>Weryfikator SKU</h1>
+          <textarea
+          class="input__sku"
+          placeholder="lista sku do sprawdzenia"
+          ></textarea>
+          <button class="generation__sku__button">
+            Sprawdź
+          </button>
+          <h1>SKU do skopiowania</h1>
+          <p class="sku__to__copy"></p>
+          <h1>Błędne SKU</h1>
+          <p class="wrong__sku"></p>
+        </div>
+        <!-- SKU Z LINKÓW TEST -->
+        <div class="box sku__from__links">
+          <h1>SKU z linków i e-maili TEST</h1>
+          <textarea
+          class="input__links"
+          placeholder="linki lub cały e-mail"
+          ></textarea>
+          <button class="generation__sku__from__links__button">
+            Zrób SKU
+          </button>
+          <h1>SKU do skopiowania</h1>
+          <p class="sku__to__copy__from__links"></p>
+        </div>
+        <!-- GENERATOR LINKU DO ZAMÓWIENIA -->
+        <div class="box generator__orders">
+          <h1>Zamówienie</h1>
+          <textarea
+          class="input__order__number"
+          placeholder="numer zamówienia"
+          ></textarea>
+          <button class="generation__order__link__button">
+            Generuj link
+          </button>
+          <h1>Link</h1>
+          <div class="order__link"></div>
+        </div>
+      </div>
+      <div class="footer">
+      </div>
+    </container>
+    <script src="js/skulinks.js"></script>
+    <script src="js/sku.js"></script>
+    <script src="js/link.js"></script>
+  </body>
+</html>
