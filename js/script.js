@@ -27,8 +27,6 @@ const closeSkuBtn = document.getElementById('close_sku');
 const closeOrderBtn = document.getElementById('close_order');
 const closeEnigmaBtn = document.getElementById('close_enigma');
 
-const toBig = document.querySelector('.to_big');
-
 //Copy Button
 const copySkuBtn = document.getElementById('copy_sku');
 
@@ -84,6 +82,9 @@ const copySku = (result) => {
 
 //Aside
 hamburgerBtn.addEventListener('click', function () {
+    const main = document.querySelector('main');
+
+    main.classList.toggle('main_open');
     aside.classList.toggle('open');
     hamburgerBtn.classList.toggle('open');
     if (options.classList.contains('display_options')) {
@@ -134,7 +135,7 @@ const createlinkToListSku = (arr) => {
 const asList = () => {
     const isLink = false;
     renderSku(isLink);
-    if (checkSku(inputMessage.value)) {
+    if (resultSku.innerHTML != 'Nie znalazłem SKU w tym tekście') {
         copySkuBtn.classList.remove('no_active');
     }
 };
@@ -236,9 +237,9 @@ skuOption.addEventListener('click', () => {
 
     if (skuOption.classList.contains('on')) {
         findSku.classList.remove('no_display');
-        setTimeout(function() {
+        setTimeout(function () {
             findSku.classList.remove('tool_hide');
-        })
+        });
     } else {
         findSku.classList.add('tool_hide');
         setTimeout(function () {
@@ -250,9 +251,9 @@ orderOption.addEventListener('click', () => {
     orderOption.classList.toggle('on');
     if (orderOption.classList.contains('on')) {
         order.classList.remove('no_display');
-        setTimeout(function() {
+        setTimeout(function () {
             order.classList.remove('tool_hide');
-        })
+        });
     } else {
         order.classList.add('tool_hide');
         setTimeout(function () {
@@ -264,9 +265,9 @@ enigmaOption.addEventListener('click', () => {
     enigmaOption.classList.toggle('on');
     if (enigmaOption.classList.contains('on')) {
         enigma.classList.remove('no_display');
-        setTimeout(function() {
+        setTimeout(function () {
             enigma.classList.remove('tool_hide');
-        })
+        });
     } else {
         enigma.classList.add('tool_hide');
         setTimeout(function () {
@@ -319,10 +320,6 @@ copySkuBtn.addEventListener('mousedown', () => {
     copySku(resultSku);
 });
 
-toBig.addEventListener('click', () => {
-    enigma.classList.toggle('big');
-    toBig.classList.toggle('turn');
-})
 document.addEventListener('mouseup', () => {
     resultSku.classList.remove('copied');
 });

@@ -22,7 +22,6 @@
         />
     </head>
     <body>
-        <div>
         <header>
             <h1>X-TOOL</h1>
             <button aria-label="theme_switch">
@@ -35,9 +34,12 @@
                     <span class="line"></span>
                     <span class="line"></span>
                     <span class="line"></span>
-                  </button>
+                </button>
                 <div class="options">
-                    <h1>Narzędzia</h1>
+                    <div class="options_header">
+                        <h1>Narzędzia</h1>
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
                     <p class="option on" id="sku_option">Znajdź SKU</p>
                     <p class="option on" id="order_option">Zamówienie</p>
                     <p class="option on" id="enigma_option">Enigma</p>
@@ -81,10 +83,9 @@
                         <p id="result_order_link"></p>
                     </div>
                 </section>
-                <section class="tool" id="enigma">
+                <section class="tool big" id="enigma">
                     <h1>Enigma</h1>
                     <div class="control_buttons">
-                        <button class="to_big">^</button>
                         <button class="close" id="close_enigma">x</button>
                     </div>
                     <button class="clear" id="clear_otrs">x</button>
@@ -109,7 +110,8 @@
                 &copy;
                 <a href="mailto:enowuigrek@gmail.com ?subject=x-tool"
                     >enowuigrek
-                </a> 2023
+                </a>
+                2023
             </p>
             <p>v5.0.0.</p>
         </footer>

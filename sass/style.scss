@@ -12,10 +12,6 @@ body {
     transition: 0.3s;
 }
 
-h1 {
-    font-size: 18px;
-}
-
 a {
     text-decoration: none;
 }
@@ -56,7 +52,6 @@ header {
 header h1 {
     color: $dark;
     font-family: 'Gruppo';
-    font-size: 20px;
     position: relative;
     margin: auto 54px;
 }
@@ -110,30 +105,6 @@ aside {
     }
 }
 
-.open {
-    width: 240px;
-}
-
-aside h1 {
-    margin-left: 54px;
-}
-
-aside p,
-aside a {
-    margin-left: 54px;
-    color: $grey;
-    line-height: 0.1;
-    &:hover {
-        color: $button-hover;
-        cursor: pointer;
-    }
-}
-
-.on,
-aside a {
-    color: $blue;
-}
-
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -152,14 +123,14 @@ aside a {
 }
 
 .hamburger.open {
-    transform: translateX(200px);
+    transform: translateX(100px);
 }
 
 .line {
     width: 24px;
     height: 2.3px;
     background-color: $grey;
-    border-radius: 100%;
+    border-radius: 10%;
     margin-bottom: 4px;
     transition: 0.7s ease;
 }
@@ -176,6 +147,40 @@ aside a {
     transform: translateY(-6px) rotate(-585deg);
 }
 
+.open {
+    width: 240px;
+}
+
+.options_header {
+    display: flex;
+    align-items: center;
+}
+
+.options_header h1 {
+    margin: 15px 18px 15px 54px;
+}
+
+.options_header i {
+    margin: 0;
+    font-size: 18px;
+}
+
+aside p,
+aside a {
+    margin-left: 54px;
+    color: $grey;
+    line-height: 0.1;
+    &:hover {
+        color: $button-hover;
+        cursor: pointer;
+    }
+}
+
+.on,
+aside a {
+    color: $blue;
+}
+
 .options {
     display: none;
 }
@@ -187,12 +192,19 @@ aside a {
 }
 
 main {
-    max-width: 1020px;
+    // max-width: 1062px;
+    max-width: 1302px;
+    padding-left: 42px;
+    // padding-left: 242px;
     margin: 120px auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     transition: 0.3s;
+}
+
+.main_open {
+    padding-left: 242px;
 }
 
 .tool {
@@ -261,8 +273,8 @@ textarea:focus {
 .clear {
     position: absolute;
     font-family: 'Gruppo';
-    top: 34px;
-    right: 69px;
+    top: 43px;
+    right: 66px;
     cursor: pointer;
     font-size: 24px;
     background-color: transparent;
@@ -281,7 +293,7 @@ textarea:focus {
     font-family: 'Gruppo';
     color: $grey;
     width: 9px;
-    height: 9px;;
+    height: 9px;
     font-size: 64px;
     position: absolute;
     top: 17px;
@@ -299,19 +311,14 @@ textarea:focus {
     color: $grey;
     font-size: 44px;
     position: absolute;
+    height: 0;
     width: 9px;
-    top: 0;
+    top: 0px;
     right: 29px;
     &:hover {
         background-color: transparent;
     }
 }
-
-// .turn {
-//     top: 27.5px;
-//     right: 26px;
-//     transform: rotate(-90deg);
-// }
 
 .big {
     width: 1000px;
@@ -328,7 +335,7 @@ textarea:focus {
 .result p:nth-child(2) {
     position: absolute;
     font-size: 18px;
-    transform: translateX(110px);
+    right: 50px;
     height: 36px;
     min-width: 36px;
     border: 2px solid $grey;
