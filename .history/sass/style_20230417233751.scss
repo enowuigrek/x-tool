@@ -172,7 +172,10 @@ button {
 .clear {
   position: absolute;
   top: 48px;
-  transform: translateX(172px);
+  right: 43px;
+  transform: translateX(100%);
+
+  // transform: translateX(172px);
   cursor: pointer;
   font-size: 22px;
   background-color: transparent;

@@ -12,7 +12,7 @@ $dark-color: rgb(39, 39, 39);
 $grey-color: rgb(128, 128, 128);
 $light-grey-color: rgb(215, 215, 215);
 
-$shadow: 0px 4px 14px -5px rgba(0, 0, 0, 1);
+$shadow: box-shadow: 0px 0px 14px -6px rgba(66, 68, 90, 1);
 
 
 $font-text: 'Lato', sans-serif;
@@ -165,7 +165,6 @@ button {
 }
 
 .sku_and_copy {
-  display: flex;
   flex-wrap: nowrap;
 }
 
@@ -194,6 +193,7 @@ button {
 
 .copy {
   font-size: 16px;
+  margin: 0;
   width: 36px;
 }
 
@@ -317,6 +317,6 @@ footer a {
   }
 }
 
-.dark .tool a {
+.dark a {
   color: $x-kom-light-blue-color;
 }
