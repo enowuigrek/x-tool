@@ -70,7 +70,7 @@ const findSkuInMessage = (input) => {
             const skuFromLink = new RegExp(/\/p\/(\d*)/);
             listSkuArr.push(checkSku(skuFromLink.exec(word)[1]));
         } else if (searchWords.includes(word)) {
-            listSkuArr.push(inputWords[index + 1].replace(/\D$/, ''));
+            listSkuArr.push(checkSku(inputWords[index + 1].replace(/\D$/, '')));
         }
     });
 };
@@ -78,9 +78,7 @@ const tryItIfYouCantFind = (input) => {
     const inputWords = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
 
     inputWords.forEach((word) => {
-        word = Math.abs(word);
-        const checkedSku = checkSku(word);
-        listSkuArr.push(checkedSku);
+        listSkuArr.push(checkSku(Math.abs(word.replace(/\D$/, ''))));
     });
 };
 
@@ -97,7 +95,7 @@ const createlinkToListSku = (arr) => {
         : (resultLink = '');
 };
 
-//
+// List or link
 const asList = () => {
     const isLink = false;
     renderSku(isLink);
@@ -241,5 +239,4 @@ const localStorageTheme = () => {
         document.querySelector('body').classList.add('light');
     }
 };
-
 localStorageTheme();
