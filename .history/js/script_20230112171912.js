@@ -155,8 +155,8 @@ const generateOrderLink = () => {
     if (orderNumber.startsWith(6)) {
       linkBegin = linkBeginAlTo;
     } else {
-      // nie dziala
       displayOrderLink.innerHTML = 'To nie jest numer zamówienia';
+
     }
 
     orderLink = linkBegin + orderNumber;

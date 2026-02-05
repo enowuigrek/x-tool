@@ -3,7 +3,10 @@
 //INPUTS
 const inputSku = document.getElementById('input_sku');
 const inputLinks = document.getElementById('input_links');
-const inputOrderNumber = document.getElementById('input_order_number');
+const inputOrderNumber = document.getElementById(
+  'input_x-kom_order_number'
+);
+const inputAlToOrderNumber = document.getElementById('input_alto_order_number');
 //BUTTONS
 const generationSkuButton = document.querySelector('.generation_sku_button');
 const generationSkuFromLinksButton = document.querySelector(
@@ -121,7 +124,7 @@ const generateSkuFromLinks = () => {
 
   //jeśli w tablicy jest "undefined, (-1 oznacza, że nie ma takiego indexu)"
   if (listSkuND.indexOf(undefined) != -1) {
-    listSkuND.splice(listSkuND.indexOf(undefined), 1);
+    listSkuND.splice(listSkuND.indexOf(undefined), 1)
   }
 
   for (let sku of listSkuND) {
@@ -131,45 +134,37 @@ const generateSkuFromLinks = () => {
   displaySkuToCopyFromLinks.innerHTML = resultSkuToCopyFromLinks;
 };
 const generateOrderLink = () => {
-  let linkBegin = '';
-
   const linkBeginXKom =
     'https://xkom-prod.operations.dynamics.com/?cmp=xkom&mi=SalesTableDetails&SalesId=';
 
   const linkBeginAlTo =
-    'https://xkom-prod.operations.dynamics.com/?cmp=alto&mi=display:SalesTableDetails&SalesId=';
+    'https://xkom-prod.operations.dynamics.com/?cmp=xkom&mi=SalesTableDetails&SalesId=';
 
   let orderNumber = inputOrderNumber.value;
 
   let resultOrderLink = '';
 
-  let orderLink = linkBegin + orderNumber;
-
   orderNumber = orderNumber.trim();
 
   if (orderNumber.length === 12) {
-    if (orderNumber.startsWith(7)) {
-      linkBegin = linkBeginXKom;
+
+    let orderLink = linkBegin + orderNumber;
+
+    if (orderNumber.indexOf(0) == 7 ) {
+      linkBegin = linkBeginXKom
     }
 
-    if (orderNumber.startsWith(6)) {
-      linkBegin = linkBeginAlTo;
-    } else {
-      // nie dziala
-      displayOrderLink.innerHTML = 'To nie jest numer zamówienia';
-    }
+    
 
     orderLink = linkBegin + orderNumber;
 
     const listElementOrderLink = `<a href= ${orderLink} target="blank"> ${orderNumber} </a>`;
     resultOrderLink += listElementOrderLink;
-    displayOrderLink.innerHTML = resultOrderLink;
+    displayOrderLink.innerHTML = resultOrderLink
+
   } else {
     displayOrderLink.innerHTML = 'To nie jest numer zamówienia';
   }
-
-  console.log(orderNumber);
-  console.log(linkBegin);
 };
 
 generationSkuButton.addEventListener('click', generateSku);

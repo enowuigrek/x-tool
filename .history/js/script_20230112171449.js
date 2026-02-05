@@ -3,7 +3,8 @@
 //INPUTS
 const inputSku = document.getElementById('input_sku');
 const inputLinks = document.getElementById('input_links');
-const inputOrderNumber = document.getElementById('input_order_number');
+const inputOrderNumber = document.getElementById('input_x-kom_order_number');
+const inputAlToOrderNumber = document.getElementById('input_alto_order_number');
 //BUTTONS
 const generationSkuButton = document.querySelector('.generation_sku_button');
 const generationSkuFromLinksButton = document.querySelector(
@@ -154,9 +155,6 @@ const generateOrderLink = () => {
 
     if (orderNumber.startsWith(6)) {
       linkBegin = linkBeginAlTo;
-    } else {
-      // nie dziala
-      displayOrderLink.innerHTML = 'To nie jest numer zamówienia';
     }
 
     orderLink = linkBegin + orderNumber;
