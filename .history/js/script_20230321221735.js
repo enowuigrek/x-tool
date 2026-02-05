@@ -3,6 +3,7 @@
 //Inputs
 const inputSku = document.getElementById('input_sku');
 const inputMessage = document.getElementById('input_links');
+const inputOrderNumber = document.getElementById('input_order_number');
 
 //Buttons
 const skuListButton = document.getElementById('sku_list_button');
@@ -13,6 +14,7 @@ const skuListFromMessageButton = document.getElementById(
 const skuLinkFromMessageButton = document.getElementById(
   'sku_link_from_message_button'
 );
+const orderLinkButton = document.getElementById('order_link_button');
 
 //Copy Buttons
 const copyskuListButton = document.getElementById('copy_sku_list_button');
@@ -21,10 +23,12 @@ const copyListFromMessageButton = document.getElementById('copy_sku_list_from_me
 //Clear Buttons
 const clearSkuInputButton = document.getElementById('clear_sku');
 const clearMessageInputButton = document.getElementById('clear_message');
+const clearOrderInputButton = document.getElementById('clear_order');
 
 //Result
 const resultSkuFromInput = document.getElementById('sku_from_input');
 const resultSkuFromMessage = document.getElementById('sku_from_message');
+const resultOrderLink = document.getElementById('order_link');
 
 let listSkuArr = [];
 let resultList = '';
@@ -171,6 +175,44 @@ const displaySkuListLinkMessage = () => {
     resultSkuFromMessage.innerHTML = 'Nie znalazłem sku w tym tekście';
   }
 };
+const displayOrderLink = () => {
+  const linkBeginXKom =
+    'https://xkom-prod.operations.dynamics.com/?cmp=xkom&mi=SalesTableDetails&SalesId=';
+
+  const linkBeginAlTo =
+    'https://xkom-prod.operations.dynamics.com/?cmp=alto&mi=display:SalesTableDetails&SalesId=';
+
+  const xKomShop = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+
+  let linkBegin = '';
+  let orderLink = '';
+  let orderNumber = inputOrderNumber.value.trim();
+
+  if (orderNumber.length === 12) {
+    if (orderNumber.startsWith(7)) {
+      linkBegin = linkBeginXKom;
+    } else if (orderNumber.startsWith(6)) {
+      linkBegin = linkBeginAlTo;
+    } else if (orderNumber.startsWith(9)) {
+      linkBegin = xKomShop;
+    } else {
+      linkBegin = undefined;
+    }
+
+    orderLink = linkBegin + orderNumber;
+
+    if (linkBegin == undefined) {
+      resultOrderLink.innerHTML = 'To nie jest numer zamówienia';
+    } else {
+      const resultorderLink = `<a href= ${orderLink} target="_blank"> ${orderNumber} </a>`;
+      resultOrderLink.innerHTML = resultorderLink;
+    }
+  } else if (orderNumber == '') {
+    resultOrderLink.innerHTML = '';
+  } else {
+    resultOrderLink.innerHTML = 'To nie jest numer zamówienia';
+  }
+};
 
 //
 skuListButton.addEventListener('click', displaySkuListToCopyInput);
@@ -194,6 +236,12 @@ clearMessageInputButton.addEventListener('click', () => {
     resultSkuFromMessage.classList.remove('selected');
   }
   inputMessage.value = '';
+});
+clearOrderInputButton.addEventListener('click', () => {
+  if (inputOrderNumber.value == '') {
+    resultOrderLink.innerHTML = '';
+  }
+  inputOrderNumber.value = '';
 });
 
 // --- copy test --- //

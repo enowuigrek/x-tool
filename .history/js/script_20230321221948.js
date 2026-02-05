@@ -25,6 +25,7 @@ const clearMessageInputButton = document.getElementById('clear_message');
 //Result
 const resultSkuFromInput = document.getElementById('sku_from_input');
 const resultSkuFromMessage = document.getElementById('sku_from_message');
+const resultOrderLink = document.getElementById('order_link');
 
 let listSkuArr = [];
 let resultList = '';

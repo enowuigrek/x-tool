@@ -21,10 +21,12 @@ const copyListFromMessageButton = document.getElementById('copy_sku_list_from_me
 //Clear Buttons
 const clearSkuInputButton = document.getElementById('clear_sku');
 const clearMessageInputButton = document.getElementById('clear_message');
+const clearOrderInputButton = document.getElementById('clear_order');
 
 //Result
 const resultSkuFromInput = document.getElementById('sku_from_input');
 const resultSkuFromMessage = document.getElementById('sku_from_message');
+const resultOrderLink = document.getElementById('order_link');
 
 let listSkuArr = [];
 let resultList = '';

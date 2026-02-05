@@ -3,6 +3,7 @@
 //Inputs
 const inputSku = document.getElementById('input_sku');
 const inputMessage = document.getElementById('input_links');
+const inputOrderNumber = document.getElementById('input_order_number');
 
 //Buttons
 const skuListButton = document.getElementById('sku_list_button');
@@ -13,6 +14,7 @@ const skuListFromMessageButton = document.getElementById(
 const skuLinkFromMessageButton = document.getElementById(
   'sku_link_from_message_button'
 );
+const orderLinkButton = document.getElementById('order_link_button');
 
 //Copy Buttons
 const copyskuListButton = document.getElementById('copy_sku_list_button');
@@ -21,10 +23,12 @@ const copyListFromMessageButton = document.getElementById('copy_sku_list_from_me
 //Clear Buttons
 const clearSkuInputButton = document.getElementById('clear_sku');
 const clearMessageInputButton = document.getElementById('clear_message');
+const clearOrderInputButton = document.getElementById('clear_order');
 
 //Result
 const resultSkuFromInput = document.getElementById('sku_from_input');
 const resultSkuFromMessage = document.getElementById('sku_from_message');
+const resultOrderLink = document.getElementById('order_link');
 
 let listSkuArr = [];
 let resultList = '';
