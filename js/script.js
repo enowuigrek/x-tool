@@ -58,9 +58,6 @@ const copySku = (result) => {
     selObj.selectAllChildren(result);
     document.execCommand('copy');
     selObj.removeAllRanges();
-    setTimeout(() => {
-        result.classList.remove('copied');
-    }, 150);
 };
 
 // SKU finder
@@ -133,6 +130,9 @@ const renderSku = (isLink) => {
         if (listSkuArr.length > 1) {
             numberSku.classList.remove('no_display');
             numberSku.innerHTML = `${listSkuArr.length}`;
+        } else {
+            numberSku.classList.add('no_display');
+            numberSku.innerHTML = '';
         }
     }
     if (!resultSku.innerHTML) {
@@ -206,8 +206,11 @@ clearOrderInputBtn.addEventListener('click', () => {
     inputOrderNumber.value = '';
 });
 
-copySkuBtn.addEventListener('click', () => {
+copySkuBtn.addEventListener('mousedown', () => {
     copySku(resultSku);
+});
+copySkuBtn.addEventListener('mouseup', () => {
+    resultSku.classList.remove('copied');
 });
 
 //DARK MODE
