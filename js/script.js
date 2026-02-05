@@ -1,13 +1,12 @@
 'use strict';
 
 //Inputs
-const inputSku = document.getElementById('input_sku');
 const inputMessage = document.getElementById('input_links');
 const inputOrderNumber = document.getElementById('input_order_number');
 
 //Buttons
-const skuListButton = document.getElementById('sku_list_button');
-const skuLinkButton = document.getElementById('sku_link_button');
+// const skuListButton = document.getElementById('sku_list_button');
+// const skuLinkButton = document.getElementById('sku_link_button');
 const skuListFromMessageButton = document.getElementById(
   'sku_list_from_message_button'
 );
@@ -17,18 +16,18 @@ const skuLinkFromMessageButton = document.getElementById(
 const orderLinkButton = document.getElementById('order_link_button');
 
 //Copy Buttons
-const copyskuListButton = document.getElementById('copy_sku_list_button');
+// const copyskuListButton = document.getElementById('copy_sku_list_button');
 const copyListFromMessageButton = document.getElementById(
   'copy_sku_list_from_message_button'
 );
 
 //Clear Buttons
-const clearSkuInputButton = document.getElementById('clear_sku');
+// const clearSkuInputButton = document.getElementById('clear_sku');
 const clearMessageInputButton = document.getElementById('clear_message');
 const clearOrderInputButton = document.getElementById('clear_order');
 
 //Result
-const resultSkuFromInput = document.getElementById('sku_from_input');
+// const resultSkuFromInput = document.getElementById('sku_from_input');
 const resultSkuFromMessage = document.getElementById('sku_from_message');
 const resultOrderLink = document.getElementById('order_link');
 
@@ -73,7 +72,7 @@ const copySku = (result) => {
   let selObj = window.getSelection();
   selObj.selectAllChildren(result);
   document.execCommand('copy');
-  selObj.removeAllRanges()
+  selObj.removeAllRanges();
   setTimeout(() => {
     result.classList.remove('copied');
   }, 150);
@@ -84,8 +83,8 @@ const generateInputlistSkuArr = (input) => {
   const splitInputText = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
 
   for (let pieceOfInputText of splitInputText) {
-    pieceOfInputText = checkSku(pieceOfInputText);
-    listSkuArr.push(pieceOfInputText);
+    const checkedSku = checkSku(pieceOfInputText);
+    listSkuArr.push(checkedSku);
   }
 };
 const generateSkuFromMessageArr = (input) => {
@@ -127,13 +126,12 @@ const generateSkuFromMessageArr = (input) => {
 };
 
 //List to copy and link to list generators
-const listToCopy = (arr) => {
-  for (let sku of arr) {
-    sku = `${sku}<br>`;
-    resultList += sku;
-  }
+const renderListSkuToCopy = (arr) => {
+  const skuList = arr.map((sku) => `${sku}<br>`);
+  resultList = skuList.join('');
 };
-const linkToList = (arr) => {
+
+const renderlinkToListSku = (arr) => {
   const linkBegin = 'href=https://www.x-kom.pl/szukaj?q=';
   let skuToLink = '';
 
@@ -152,34 +150,38 @@ const linkToList = (arr) => {
 };
 
 //Push-button functions
-const displaySkuListToCopyInput = () => {
-  clearlistSku();
-  generateInputlistSkuArr(inputSku.value);
-  delateDuplicateAndUndefined();
-  listToCopy(listSkuArr);
-  copyskuListButton.classList.remove('no_active');
-  resultSkuFromInput.innerHTML = resultList;
-  if (!resultSkuFromInput.innerHTML) {
-    resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
-    copyskuListButton.classList.add('no_active');
-  }
-};
-const displaySkuListLinkInput = () => {
-  copyskuListButton.classList.add('no_active');
-  clearlistSku();
-  generateInputlistSkuArr(inputSku.value);
-  delateDuplicateAndUndefined();
-  linkToList(listSkuArr);
-  resultSkuFromInput.innerHTML = resultLink;
-  if (!resultSkuFromInput.innerHTML) {
-    resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
-  }
-};
-const displaySkuListToCopyMessage = () => {
+// const displaySkurenderListSkuToCopyInput = () => {
+//   clearlistSku();
+//   generateInputlistSkuArr(inputSku.value);
+//   delateDuplicateAndUndefined();
+//   renderListSkuToCopy(listSkuArr);
+//   copyskuListButton.classList.remove('no_active');
+//   resultSkuFromInput.innerHTML = resultList;
+//   if (!resultSkuFromInput.innerHTML) {
+//     resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
+//     copyskuListButton.classList.add('no_active');
+//   }
+// };
+// const displaySkuListLinkInput = () => {
+//   copyskuListButton.classList.add('no_active');
+//   clearlistSku();
+//   generateInputlistSkuArr(inputSku.value);
+//   delateDuplicateAndUndefined();
+//   renderlinkToListSku(listSkuArr);
+//   resultSkuFromInput.innerHTML = resultLink;
+//   if (!resultSkuFromInput.innerHTML) {
+//     resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
+//   }
+// };
+
+const displaySkurenderListSkuToCopyMessage = () => {
   clearlistSku();
   generateSkuFromMessageArr(inputMessage.value);
+  if (listSkuArr.length === 0) {
+    generateInputlistSkuArr(inputMessage.value);
+  }
   delateDuplicateAndUndefined();
-  listToCopy(listSkuArr);
+  renderListSkuToCopy(listSkuArr);
   copyListFromMessageButton.classList.remove('no_active');
   resultSkuFromMessage.innerHTML = resultList;
   if (!resultSkuFromMessage.innerHTML) {
@@ -191,13 +193,17 @@ const displaySkuListLinkMessage = () => {
   copyListFromMessageButton.classList.add('no_active');
   clearlistSku();
   generateSkuFromMessageArr(inputMessage.value);
+  if (listSkuArr.length === 0) {
+    generateInputlistSkuArr(inputMessage.value);
+  }
   delateDuplicateAndUndefined();
-  linkToList(listSkuArr);
+  renderlinkToListSku(listSkuArr);
   resultSkuFromMessage.innerHTML = resultLink;
   if (!resultSkuFromMessage.innerHTML) {
     resultSkuFromMessage.innerHTML = 'Nie znalazłem sku w tym tekście';
   }
 };
+
 const displayOrderLink = () => {
   const linkBeginXKom =
     'https://xkom-prod.operations.dynamics.com/?cmp=xkom&mi=SalesTableDetails&SalesId=';
@@ -238,20 +244,23 @@ const displayOrderLink = () => {
 };
 
 //Event Listeners
-skuListButton.addEventListener('click', displaySkuListToCopyInput);
-skuLinkButton.addEventListener('click', displaySkuListLinkInput);
-skuListFromMessageButton.addEventListener('click', displaySkuListToCopyMessage);
+// skuListButton.addEventListener('click', displaySkurenderListSkuToCopyInput);
+// skuLinkButton.addEventListener('click', displaySkuListLinkInput);
+skuListFromMessageButton.addEventListener(
+  'click',
+  displaySkurenderListSkuToCopyMessage
+);
 skuLinkFromMessageButton.addEventListener('click', displaySkuListLinkMessage);
 orderLinkButton.addEventListener('click', displayOrderLink);
 
-clearSkuInputButton.addEventListener('click', () => {
-  if (inputSku.value == '') {
-    resultSkuFromInput.innerHTML = '';
-    copyskuListButton.classList.add('no_active');
-    resultSkuFromInput.classList.remove('selected');
-  }
-  inputSku.value = '';
-});
+// clearSkuInputButton.addEventListener('click', () => {
+//   if (inputSku.value == '') {
+//     resultSkuFromInput.innerHTML = '';
+//     copyskuListButton.classList.add('no_active');
+//     resultSkuFromInput.classList.remove('selected');
+//   }
+//   inputSku.value = '';
+// });
 clearMessageInputButton.addEventListener('click', () => {
   if (inputMessage.value == '') {
     resultSkuFromMessage.innerHTML = '';
@@ -268,15 +277,15 @@ clearOrderInputButton.addEventListener('click', () => {
   inputOrderNumber.value = '';
 });
 
-copyskuListButton.addEventListener('click', () => {
-  copySku(resultSkuFromInput);
-});
+// copyskuListButton.addEventListener('click', () => {
+//   copySku(resultSkuFromInput);
+// });
 copyListFromMessageButton.addEventListener('click', () => {
   copySku(resultSkuFromMessage);
 });
-resultSkuFromInput.addEventListener('click', () => {
-  resultSkuFromInput.classList.remove('selected');
-});
+// resultSkuFromInput.addEventListener('click', () => {
+//   resultSkuFromInput.classList.remove('selected');
+// });
 resultSkuFromMessage.addEventListener('click', () => {
   resultSkuFromMessage.classList.remove('selected');
 });
