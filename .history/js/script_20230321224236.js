@@ -48,7 +48,7 @@ const checkSku = (sku) => {
   sku = Number(sku);
   sku = String(sku);
   //ad zero if length is 7
-  if (sku.length >= 5 && sku.length <= 6) {
+  if (sku.length >= 4 && sku.length <= 6) {
     return sku;
   } else if (sku.length == 7) {
     return '00' + sku;
@@ -222,11 +222,3 @@ copyskuListButton.addEventListener('click', () => {
 copyListFromMessageButton.addEventListener('click', () => {
   copySku(resultSkuFromMessage);
 });
-
-resultSkuFromInput.addEventListener('click', () => {
-  resultSkuFromInput.classList.remove('selected')
-})
-
-resultSkuFromMessage.addEventListener('click', () => {
-  resultSkuFromInput.classList.remove('selected')
-})

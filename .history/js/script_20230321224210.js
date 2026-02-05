@@ -48,7 +48,7 @@ const checkSku = (sku) => {
   sku = Number(sku);
   sku = String(sku);
   //ad zero if length is 7
-  if (sku.length >= 5 && sku.length <= 6) {
+  if (sku.length >= 4 && sku.length <= 6) {
     return sku;
   } else if (sku.length == 7) {
     return '00' + sku;
@@ -215,14 +215,6 @@ const copySku = (result) => {
   }, 150);
 };
 
-copyskuListButton.addEventListener('click', () => {
-  copySku(resultSkuFromInput);
-});
-
-copyListFromMessageButton.addEventListener('click', () => {
-  copySku(resultSkuFromMessage);
-});
-
 resultSkuFromInput.addEventListener('click', () => {
   resultSkuFromInput.classList.remove('selected')
 })
@@ -230,3 +222,11 @@ resultSkuFromInput.addEventListener('click', () => {
 resultSkuFromMessage.addEventListener('click', () => {
   resultSkuFromInput.classList.remove('selected')
 })
+
+copyskuListButton.addEventListener('click', () => {
+  copySku(resultSkuFromInput);
+});
+
+copyListFromMessageButton.addEventListener('click', () => {
+  copySku(resultSkuFromMessage);
+});
