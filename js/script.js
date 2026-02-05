@@ -218,7 +218,7 @@ const renderOrderLink = () => {
 const decipher = () => {
     let text = inputOTRS.value;
     text = text.replace(/\\n/g, '<br>');
-    text = text.replace(/\\r/g, '<br>');
+    text = text.replace(/\\r/g, '');
     resultOTRS.innerHTML = text;
 };
 

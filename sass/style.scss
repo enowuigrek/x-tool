@@ -95,14 +95,19 @@ header button {
 aside {
     z-index: 1;
     height: 100%;
-    width: 54px;
+    width: 42px;
     position: fixed;
-    margin: 76px auto 0 0;
+    margin: 90px auto 0 0;
+    border-radius: 5px;
     box-shadow: $shadow;
     display: flex;
     flex-direction: column;
     background-color: $white;
-    transition: width 0.3s ease;
+    transition: 0.3s ease;
+    &:hover {
+        box-shadow: $shadow-hover;
+        transform: translateY(-2px);
+    }
 }
 
 .open {
@@ -113,7 +118,8 @@ aside h1 {
     margin-left: 54px;
 }
 
-aside p, aside a {
+aside p,
+aside a {
     margin-left: 54px;
     color: $grey;
     line-height: 0.1;
@@ -124,7 +130,8 @@ aside p, aside a {
     }
 }
 
-.on, aside a {
+.on,
+aside a {
     color: $blue;
 }
 
@@ -133,33 +140,32 @@ aside p, aside a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 8px;
+    margin: 0;
     width: 40px;
     height: 40px;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
+    transition: 0.3s ease;
     &:hover {
         background-color: transparent;
     }
 }
 
 .hamburger.open {
-    transform: translateX(190px);
+    transform: translateX(200px);
 }
 
 .line {
     width: 24px;
     height: 2px;
-    background-color: #000;
+    background-color: $grey;
     margin-bottom: 4px;
-    transition: background-color 0.3s ease;
+    transition: 0.7s ease;
 }
 
 .hamburger.open .line:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(6px) rotate(225deg);
 }
 
 .hamburger.open .line:nth-child(2) {
@@ -167,7 +173,7 @@ aside p, aside a {
 }
 
 .hamburger.open .line:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-6px) rotate(-585deg);
 }
 
 .options {
@@ -209,32 +215,6 @@ main {
     }
 }
 
-.to_big {
-    margin: 0;
-    background-color: transparent;
-    color: $grey;
-    width: 0;
-    font-size: 21px;
-    position: absolute;
-    bottom: 0;
-    right: 32px;
-    &:hover {
-        background-color: transparent;
-    }
-}
-
-.turn {
-    transform: translateX(16px) rotate(-180deg)
-}
-
-.big {
-    width: 1000px;
-}
-
-.tool_hide {
-    opacity: 0;
-}
-
 textarea,
 input {
     background-color: transparent;
@@ -245,7 +225,7 @@ input {
     border-radius: 4px;
     font-family: $font-text;
     resize: none;
-    transition: all 0.3s ease-in-out;
+    transition: 0.3s;
 }
 
 input {
@@ -281,24 +261,60 @@ textarea:focus {
 
 .clear {
     position: absolute;
-    top: 54px;
-    transform: translateX(180px);
+    top: 38px;
+    right: 62px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 16px;
     background-color: transparent;
     color: $grey;
-    font-family: 'Gruppo', cursive;
-    margin: 5px;
-    height: 22px;
-    width: 22px;
+    width: 0;
+    height: 0;
     &:hover {
         background-color: transparent;
         color: black;
     }
 }
 
-.big .clear {
-    transform: translateX(435px);
+.to_big {
+    margin: 0;
+    background-color: transparent;
+    color: $grey;
+    width: 0;
+    height: 0;
+    font-size: 21px;
+    position: absolute;
+    top: 11px;
+    right: 56px;
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+.close {
+    margin: 0;
+    background-color: transparent;
+    color: $grey;
+    width: 0;
+    height: 0;
+    font-size: 26px;
+    position: absolute;
+    top: 8px;
+    right: 34px;
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+.turn {
+    transform: scaleX(-1);
+}
+
+.big {
+    width: 1000px;
+}
+
+.tool_hide {
+    opacity: 0;
 }
 
 .result {
@@ -425,11 +441,13 @@ footer a {
     background-color: $black;
 }
 
-.dark aside p:hover, .dark aside a:hover {
+.dark aside p:hover,
+.dark aside a:hover {
     color: $dark-button-hover;
 }
 
-.dark .on, .dark aside a {
+.dark .on,
+.dark aside a {
     color: $light-blue;
 }
 
@@ -455,7 +473,8 @@ footer a {
     z-index: 1;
 }
 
-.dark .clear {
+.dark .clear,
+.dark .close {
     background-color: transparent;
     color: $grey;
     &:hover {

@@ -41,14 +41,15 @@
                     <p class="option on" id="sku_option">Znajdź SKU</p>
                     <p class="option on" id="order_option">Zamówienie</p>
                     <p class="option on" id="enigma_option">Enigma</p>
-                    <h1>Szablony e-mail TEST</h1>
-                    <a href="mailto:tomasz.rzepecki@x-kom.pl?subject=Limit &body=Nazwa firmy:%0D%0ANIP:">Wniosek limitowy</a>
+                    <!-- <h1>Szablony e-mail TEST</h1>
+                    <a href="mailto:tomasz.rzepecki@x-kom.pl?subject=Limit &body=Nazwa firmy:%0D%0ANIP:">Wniosek limitowy</a> -->
                 </div>
             </aside>
             <main>
                 <section class="tool" id="find_sku">
                     <h1>Znajdź SKU</h1>
-                    <button class="clear" id="clear_message">x</button>
+                    <button class="close" id="clear_message"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="clear" id="close_sku"><i class="fa-solid fa-xmark"></i></button>
                     <textarea
                         id="input_message"
                         placeholder="wiadomość od Klienta"
@@ -69,11 +70,12 @@
                 </section>
                 <section class="tool" id="order">
                     <h1>Zamówienie</h1>
+                    <button class="close" id="close_order"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="clear" id="clear_order"><i class="fa-solid fa-xmark"></i></button>
                     <input
                         id="input_order_number"
                         placeholder="numer zamówienia"
                     />
-                    <button class="clear" id="clear_order">x</button>
                     <button id="order_link_btn">Generuj link</button>
                     <div class="result">
                         <p id="result_order_link"></p>
@@ -81,7 +83,11 @@
                 </section>
                 <section class="tool" id="enigma">
                     <h1>Enigma</h1>
-                    <button class="clear" id="clear_otrs">x</button>
+                    <div class="control_buttons">
+                        <button class="to_big"><i class="fa-solid fa-angle-right"></i></button>
+                        <button class="close" id="close_enigma"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <button class="clear" id="clear_otrs"><i class="fa-solid fa-xmark"></i></button>
                     <textarea
                         id="input_otrs"
                         placeholder="mail z formularza OTRS"
@@ -95,7 +101,6 @@
                         <p id="result_otrs"></p>
                         <p class="no_display" id="mail_otrs"></p>
                     </div>
-                    <button class="to_big"><i class="fa-solid fa-arrow-right"></i></button>
                 </section>
             </main>
         </div>
