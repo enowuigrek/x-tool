@@ -2,7 +2,6 @@
 <html lang="pl">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>x-tool</title>
@@ -21,14 +20,7 @@
             href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap"
             rel="stylesheet"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
-            rel="stylesheet"
-        />
     </head>
-
     <body>
         <header>
             <h1>X-TOOL</h1>
@@ -37,9 +29,9 @@
             </button>
         </header>
         <main>
-            <div class="tool">
-                <button class="clear" id="clear_message">x</button>
+            <section class="tool">
                 <h1>Znajdź SKU</h1>
+                <button class="clear" id="clear_message">x</button>
                 <textarea
                     id="input_message"
                     placeholder="wiadomość od Klienta"
@@ -57,16 +49,16 @@
                     <p id="result_sku"></p>
                     <p class="no_display" id="number_sku"></p>
                 </div>
-            </div>
-            <div class="tool">
-                <button class="clear" id="clear_order">x</button>
+            </section>
+            <section class="tool">
                 <h1>Zamówienie</h1>
                 <input id="input_order_number" placeholder="numer zamówienia" />
+                <button class="clear" id="clear_order">x</button>
                 <button id="order_link_btn">Generuj link</button>
                 <div class="result">
                     <p id="result_order_link"></p>
                 </div>
-            </div>
+            </section>
         </main>
         <footer>
             <p>
