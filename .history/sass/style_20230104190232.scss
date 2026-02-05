@@ -37,6 +37,12 @@ body {
 }
 
 .container {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    $x-kom-light-blue-color,
+    $x-kom-blue-color
+  );
   margin: 0 auto;
   height: 100vh;
 }
