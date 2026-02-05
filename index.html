@@ -32,50 +32,39 @@
     <body>
         <header>
             <h1>X-TOOL</h1>
-            <button aria-label="Przełącznik trybu nocnego">
+            <button aria-label="theme_switch">
                 <div class="icon"></div>
             </button>
         </header>
         <main>
-            <div class="tools">
-                <div class="tool">
-                    <button class="clear" id="clear_message">x</button>
-                    <h1>Znajdź SKU</h1>
-                    <textarea
-                        id="input_links"
-                        placeholder="wiadomość od Klienta"
-                    ></textarea>
-                    <div class="buttons">
-                        <div class="sku_and_copy">
-                            <button id="sku_list_from_message_button">
-                                Szukaj
-                            </button>
-                            <button
-                                class="copy no_active"
-                                id="copy_sku_list_from_message_button"
-                            >
-                                <i class="fa-regular fa-copy"></i>
-                            </button>
-                        </div>
-                        <button id="sku_link_from_message_button">
-                            Link do listy
+            <div class="tool">
+                <button class="clear" id="clear_message">x</button>
+                <h1>Znajdź SKU</h1>
+                <textarea
+                    id="input_message"
+                    placeholder="wiadomość od Klienta"
+                ></textarea>
+                <div class="buttons">
+                    <div class="sku_and_copy">
+                        <button id="list_sku_btn">Szukaj</button>
+                        <button class="copy no_active" id="copy_sku">
+                            <i class="fa-regular fa-copy"></i>
                         </button>
                     </div>
-                    <div class="result">
-                        <p id="sku_from_message"></p>
-                    </div>
+                    <button id="link_sku_btn">Link do listy</button>
                 </div>
-                <div class="tool">
-                    <button class="clear" id="clear_order">x</button>
-                    <h1>Zamówienie</h1>
-                    <input
-                        id="input_order_number"
-                        placeholder="numer zamówienia"
-                    />
-                    <button id="order_link_button">Generuj link</button>
-                    <div class="result">
-                        <p id="order_link"></p>
-                    </div>
+                <div class="result">
+                    <p id="result_sku"></p>
+                    <p class="no_display" id="number_sku"></p>
+                </div>
+            </div>
+            <div class="tool">
+                <button class="clear" id="clear_order">x</button>
+                <h1>Zamówienie</h1>
+                <input id="input_order_number" placeholder="numer zamówienia" />
+                <button id="order_link_btn">Generuj link</button>
+                <div class="result">
+                    <p id="result_order_link"></p>
                 </div>
             </div>
         </main>
@@ -86,7 +75,7 @@
                     >enowuigrek </a
                 >2023
             </p>
-            <p>v4.8.5</p>
+            <p>v4.8.7</p>
         </footer>
         <script src="js/script.js"></script>
     </body>

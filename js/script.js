@@ -1,24 +1,25 @@
 'use strict';
 
 //Inputs
-const inputMessage = document.getElementById('input_links');
+const inputMessage = document.getElementById('input_message');
 const inputOrderNumber = document.getElementById('input_order_number');
 
 //Buttons
-const listSkuBtn = document.getElementById('sku_list_from_message_button');
-const linkSkuBtn = document.getElementById('sku_link_from_message_button');
-const orderLinkBtn = document.getElementById('order_link_button');
+const listSkuBtn = document.getElementById('list_sku_btn');
+const linkSkuBtn = document.getElementById('link_sku_btn');
+const orderLinkBtn = document.getElementById('order_link_btn');
 
 //Copy Button
-const copySkuBtn = document.getElementById('copy_sku_list_from_message_button');
+const copySkuBtn = document.getElementById('copy_sku');
 
 //Clear Buttons
 const clearMessageInputBtn = document.getElementById('clear_message');
 const clearOrderInputBtn = document.getElementById('clear_order');
 
 //Result
-const resultSku = document.getElementById('sku_from_message');
-const resultOrderLink = document.getElementById('order_link');
+const resultSku = document.getElementById('result_sku');
+const numberSku = document.getElementById('number_sku');
+const resultOrderLink = document.getElementById('result_order_link');
 
 let listSkuArr = [];
 let resultList = '';
@@ -113,7 +114,7 @@ const asLink = () => {
     copySkuBtn.classList.add('no_active');
 };
 
-//Render to HTML
+//Render in HTML
 const renderSku = (isLink) => {
     clearlistSku(listSkuArr);
     findSkuInMessage(inputMessage.value);
@@ -124,9 +125,15 @@ const renderSku = (isLink) => {
     if (isLink) {
         createlinkToListSku(listSkuArr);
         resultSku.innerHTML = resultLink;
+        numberSku.innerHTML = '';
+        numberSku.classList.add('no_display');
     } else {
         createListSkuToCopy(listSkuArr);
         resultSku.innerHTML = resultList;
+        if (listSkuArr.length > 1) {
+            numberSku.classList.remove('no_display');
+            numberSku.innerHTML = `${listSkuArr.length}`;
+        }
     }
     if (!resultSku.innerHTML) {
         resultSku.innerHTML = 'Nie znalazłem SKU w tym tekście';
@@ -185,6 +192,7 @@ orderLinkBtn.addEventListener('click', renderOrderLink);
 clearMessageInputBtn.addEventListener('click', () => {
     if (!inputMessage.value) {
         resultSku.innerHTML = '';
+        numberSku.innerHTML = '';
         copySkuBtn.classList.add('no_active');
         resultSku.classList.remove('selected');
     }
