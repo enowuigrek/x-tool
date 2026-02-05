@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
+
+/* Variables */
+
+$color-light: #fff;
+$color-dark: rgba(41, 53, 86, 1);
+
+$font-logo: 'Sacramento', cursive;
+$font-header: 'Oswald', sans-serif;
+$font-text: 'Varela round', sans-serif;
+
+/* Global */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: $font-text;
+  color: $color-dark;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../images/stacked-peaks-haikei.svg);
+  background-size: cover;
+  animation: move 15s linear alternate infinite;
+}
+
+@keyframes move {
+
+  50% {
+    background-position: 50%;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: min-content;
+  border-radius: 16px;
+  background-color: $color-light;
+}
+
+.sku-input {
+  margin-top 6px;
+  border: 2px solid;
+}
