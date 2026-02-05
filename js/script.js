@@ -3,11 +3,13 @@
 //Inputs
 const inputMessage = document.getElementById('input_message');
 const inputOrderNumber = document.getElementById('input_order_number');
+const inputOTRS = document.getElementById('input_otrs');
 
 //Buttons
 const listSkuBtn = document.getElementById('list_sku_btn');
 const linkSkuBtn = document.getElementById('link_sku_btn');
 const orderLinkBtn = document.getElementById('order_link_btn');
+const enigmaBtn = document.getElementById('enigma_btn');
 
 //Copy Button
 const copySkuBtn = document.getElementById('copy_sku');
@@ -15,11 +17,12 @@ const copySkuBtn = document.getElementById('copy_sku');
 //Clear Buttons
 const clearMessageInputBtn = document.getElementById('clear_message');
 const clearOrderInputBtn = document.getElementById('clear_order');
-
+const clearOTRSInputBtn = document.getElementById('clear_otrs');
 //Result
 const resultSku = document.getElementById('result_sku');
 const numberSku = document.getElementById('number_sku');
 const resultOrderLink = document.getElementById('result_order_link');
+const resultOTRS = document.getElementById('result_otrs');
 
 let listSkuArr = [];
 let resultList = '';
@@ -183,10 +186,18 @@ const renderOrderLink = () => {
     }
 };
 
+const decipher = () => {
+    let  text = inputOTRS.value;
+    text = text.replace(/\/n/g, '<br>');  // zamienia wszystkie wystąpienia '/n' na '<br>'
+    text = text.replace(/\/r/g, '<br>');  // zamienia wszystkie wystąpienia '/r' na '<br>'
+    resultOTRS.innerHTML = text;
+}
+
 //Event Listeners
 listSkuBtn.addEventListener('click', asList);
 linkSkuBtn.addEventListener('click', asLink);
 orderLinkBtn.addEventListener('click', renderOrderLink);
+enigmaBtn.addEventListener('click', decipher);
 
 clearMessageInputBtn.addEventListener('click', () => {
     if (!inputMessage.value) {
@@ -204,6 +215,13 @@ clearOrderInputBtn.addEventListener('click', () => {
         resultOrderLink.innerHTML = '';
     }
     inputOrderNumber.value = '';
+});
+
+clearOTRSInputBtn.addEventListener('click', () => {
+    if (!inputOTRS.value) {
+        resultOTRS.innerHTML = '';
+    }
+    inputOTRS.value = '';
 });
 
 copySkuBtn.addEventListener('mousedown', () => {
