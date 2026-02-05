@@ -222,14 +222,13 @@ main {
   width: 490px;
   height: -moz-min-content;
   height: min-content;
-  border-radius: 8px; /* było 5px */
+  border-radius: 5px;
   box-shadow: 0 5px 13px -5px rgb(0, 0, 0);
-  transform: translateY(0); /* dodane */
-  transition: all 0.2s ease; /* zmienione z 0.3s */
+  transition: 0.3s;
 }
 .tool:hover {
-  box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.2); /* ulepszone */
-  transform: translateY(-3px); /* było -2px */
+  box-shadow: 2px 7px 16px -5px rgb(0, 0, 0);
+  transform: translateY(-2px);
 }
 
 textarea,
