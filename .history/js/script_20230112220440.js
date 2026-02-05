@@ -45,6 +45,11 @@ const checkSku = (sku) => {
     return '00' + sku;
   }
 };
+// const displayOn = () => {
+//   if (display.innerHTML == true) {
+//     display.classList.add('active');
+//   }
+// };
 const generateSku = () => {
   //TODO: Pozmieniać nazwy zmiennych. InputSku i InputText w tej formie są już dziwne. generateSku też.
   let resultSku = '';

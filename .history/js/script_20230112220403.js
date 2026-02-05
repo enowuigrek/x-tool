@@ -17,6 +17,8 @@ const generationOrderLinkButton = document.getElementById(
   'generation_order_link_button'
 );
 //RESULTS
+// const display = document.querySelectorAll('.display p');
+// console.log(display);
 const displaySkuToCopy = document.querySelector('.sku_to_copy');
 const displayWrongSku = document.querySelector('.wrong_sku');
 const displaySkuToCopyFromLinks = document.querySelector(
@@ -45,6 +47,11 @@ const checkSku = (sku) => {
     return '00' + sku;
   }
 };
+// const displayOn = () => {
+//   if (display.innerHTML == true) {
+//     display.classList.add('active');
+//   }
+// };
 const generateSku = () => {
   //TODO: Pozmieniać nazwy zmiennych. InputSku i InputText w tej formie są już dziwne. generateSku też.
   let resultSku = '';
@@ -163,6 +170,7 @@ const generateSkuFromMessage = () => {
   }
   displaySkuToCopyFromLinks.innerHTML = resultSkuToCopyFromLinks;
 };
+
 const generateLinkFromMessage = () => {
   const input = inputLinks.value;
   const splitInputTextArray = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
