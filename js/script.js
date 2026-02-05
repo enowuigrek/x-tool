@@ -21,16 +21,16 @@ const clearSkuInputButton = document.getElementById('clear_sku');
 const clearMessageInputButton = document.getElementById('clear_message');
 const clearOrderInputButton = document.getElementById('clear_order');
 
-
-//Results
-const displaySkuFromInput = document.querySelector('.sku_from_input');
-const displaySkuFromMessage = document.querySelector('.sku_from_message');
-const displaydisplayOrderLink = document.querySelector('.order_link');
+//Result
+const resultSkuFromInput = document.querySelector('.sku_from_input');
+const resultSkuFromMessage = document.querySelector('.sku_from_message');
+const resultOrderLink = document.querySelector('.order_link');
 
 let listSkuArr = [];
 let resultList = '';
 let resultLink = '';
 
+//
 const clearlistSku = () => {
   resultList = '';
   resultLink = '';
@@ -127,28 +127,40 @@ const displaySkuListToCopyInput = () => {
   generateInputlistSkuArr(inputSku.value);
   delateDuplicateAndUndefined();
   listToCopy(listSkuArr);
-  displaySkuFromInput.innerHTML = resultList;
+  resultSkuFromInput.innerHTML = resultList;
+  if (!resultSkuFromInput.innerHTML) {
+    resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
+  }
 };
 const displaySkuListLinkInput = () => {
   clearlistSku();
   generateInputlistSkuArr(inputSku.value);
   delateDuplicateAndUndefined();
   linkToList(listSkuArr);
-  displaySkuFromInput.innerHTML = resultLink;
+  resultSkuFromInput.innerHTML = resultLink;
+  if (!resultSkuFromInput.innerHTML) {
+    resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
+  }
 };
 const displaySkuListToCopyMessage = () => {
   clearlistSku();
   generateSkuFromMessageArr(inputMessage.value);
   delateDuplicateAndUndefined();
   listToCopy(listSkuArr);
-  displaySkuFromMessage.innerHTML = resultList;
+  resultSkuFromMessage.innerHTML = resultList;
+  if (!resultSkuFromMessage.innerHTML) {
+    resultSkuFromMessage.innerHTML = 'Nie znalazłem sku w tym tekście';
+  }
 };
 const displaySkuListLinkMessage = () => {
   clearlistSku();
   generateSkuFromMessageArr(inputMessage.value);
   delateDuplicateAndUndefined();
   linkToList(listSkuArr);
-  displaySkuFromMessage.innerHTML = resultLink;
+  resultSkuFromMessage.innerHTML = resultLink;
+  if (!resultSkuFromMessage.innerHTML) {
+    resultSkuFromMessage.innerHTML = 'Nie znalazłem sku w tym tekście';
+  }
 };
 const displayOrderLink = () => {
   const linkBeginXKom =
@@ -160,7 +172,7 @@ const displayOrderLink = () => {
   const xKomShop = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 
   let linkBegin = '';
-  let displayOrderLink = '';
+  let orderLink = '';
   let orderNumber = inputOrderNumber.value.trim();
 
   if (orderNumber.length === 12) {
@@ -174,27 +186,44 @@ const displayOrderLink = () => {
       linkBegin = undefined;
     }
 
-    displayOrderLink = linkBegin + orderNumber;
+    orderLink = linkBegin + orderNumber;
 
     if (linkBegin == undefined) {
-      displaydisplayOrderLink.innerHTML = 'To nie jest numer zamówienia';
+      resultOrderLink.innerHTML = 'To nie jest numer zamówienia';
     } else {
-      const resultdisplayOrderLink = `<a href= ${displayOrderLink} target="_blank"> ${orderNumber} </a>`;
-      displaydisplayOrderLink.innerHTML = resultdisplayOrderLink;
+      const resultorderLink = `<a href= ${orderLink} target="_blank"> ${orderNumber} </a>`;
+      resultOrderLink.innerHTML = resultorderLink;
     }
   } else if (orderNumber == '') {
-    displaydisplayOrderLink.innerHTML = '';
+    resultOrderLink.innerHTML = '';
   } else {
-    displaydisplayOrderLink.innerHTML = 'To nie jest numer zamówienia';
+    resultOrderLink.innerHTML = 'To nie jest numer zamówienia';
   }
 };
 
+//
 skuListButton.addEventListener('click', displaySkuListToCopyInput);
 skuLinkButton.addEventListener('click', displaySkuListLinkInput);
 skuListFromMessageButton.addEventListener('click', displaySkuListToCopyMessage);
 skuLinkFromMessageButton.addEventListener('click', displaySkuListLinkMessage);
 orderLinkButton.addEventListener('click', displayOrderLink);
 
-clearSkuInputButton.addEventListener('click', function(){inputSku.value = ''});
-clearMessageInputButton.addEventListener('click', function(){inputMessage.value = ''});
-clearOrderInputButton.addEventListener('click', function(){inputOrderNumber.value = ''});
+//
+clearSkuInputButton.addEventListener('click', function () {
+  if (inputSku.value == '') {
+    resultSkuFromInput.innerHTML = '';
+  }
+  inputSku.value = '';
+});
+clearMessageInputButton.addEventListener('click', function () {
+  if (inputMessage.value == '') {
+    resultSkuFromMessage.innerHTML = '';
+  }
+  inputMessage.value = '';
+});
+clearOrderInputButton.addEventListener('click', function () {
+  if (inputOrderNumber.value == '') {
+    resultOrderLink.innerHTML = '';
+  }
+  inputOrderNumber.value = '';
+});
