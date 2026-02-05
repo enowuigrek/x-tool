@@ -31,10 +31,10 @@ let resultList = '';
 let resultLink = '';
 
 //
-const clearlistSku = () => {
+const clearlistSku = (arr) => {
   resultList = '';
   resultLink = '';
-  listSkuArr.length = 0;
+  arr.length = 0;
 };
 
 //TODO: przestalo dzialac chyba set na przekazanej tablicy nie dziala, a dzialal na konkretnej
@@ -60,10 +60,9 @@ const checkSku = (sku) => {
 };
 const copySku = (result) => {
   if (
-    result.textContent.includes('Wklej sku oddzielone spacją lub enterem') ||
-    result.textContent.includes('Nie znalazłem sku w tym tekście') ||
+    result.textContent.includes('Nie znalazłem SKU w tym tekście') ||
     result.textContent.includes('Lista na stronie')
-  ) {
+  ){
     return;
   }
   result.classList.add('selected');
@@ -116,6 +115,7 @@ const generateSkuFromMessageArr = (input) => {
       word === 'xkom:' ||
       word === 'sku:' ||
       word === 'sku' ||
+      word === 'x' ||
       word === 'code:'
     )
       extractorSkuFromText(word);
@@ -151,7 +151,9 @@ const renderlinkToListSku = (arr) => {
 const displaySkuRenderListSkuToCopyMessage = () => {
   const displayAsLink = false;
   displaySkuListMessage(displayAsLink);
-  copyListFromMessageButton.classList.remove('no_active');
+  if (inputMessage.value){
+    copyListFromMessageButton.classList.remove('no_active')
+  };
 };
 
 const displaySkuListLinkMessage = () => {
@@ -161,7 +163,7 @@ const displaySkuListLinkMessage = () => {
 };
 
 const displaySkuListMessage = (displayAsLink) => {
-  clearlistSku();
+  clearlistSku(listSkuArr);
   generateSkuFromMessageArr(inputMessage.value);
   if (!listSkuArr.length) {
     generateInputlistSkuArr(inputMessage.value);
@@ -175,7 +177,7 @@ const displaySkuListMessage = (displayAsLink) => {
     resultSkuFromMessage.innerHTML = resultList;
   }
   if (!resultSkuFromMessage.innerHTML) {
-    resultSkuFromMessage.innerHTML = 'Nie znalazłem sku w tym tekście';
+    resultSkuFromMessage.innerHTML = 'Nie znalazłem SKU w tym tekście';
   }
 };
 
@@ -211,8 +213,8 @@ const displayOrderLink = () => {
       let resultOrderLinkHref = `<a href= ${orderLink} target="_blank"> ${orderNumber} </a>`;
       resultOrderLink.innerHTML = resultOrderLinkHref;
     }
-  } else if (orderNumber == '') {
-    resultOrderLink.innerHTML = '';
+  } else if (!orderNumber) {
+    resultOrderLink.innerHTML = 'Gdzie ten numer?';
   } else {
     resultOrderLink.innerHTML = 'To nie jest numer zamówienia';
   }
@@ -227,7 +229,7 @@ skuLinkFromMessageButton.addEventListener('click', displaySkuListLinkMessage);
 orderLinkButton.addEventListener('click', displayOrderLink);
 
 clearMessageInputButton.addEventListener('click', () => {
-  if (inputMessage.value == '') {
+  if (!inputMessage.value) {
     resultSkuFromMessage.innerHTML = '';
     copyListFromMessageButton.classList.add('no_active');
     resultSkuFromMessage.classList.remove('selected');
@@ -236,7 +238,7 @@ clearMessageInputButton.addEventListener('click', () => {
 });
 
 clearOrderInputButton.addEventListener('click', () => {
-  if (inputOrderNumber.value == '') {
+  if (!inputOrderNumber.value) {
     resultOrderLink.innerHTML = '';
   }
   inputOrderNumber.value = '';

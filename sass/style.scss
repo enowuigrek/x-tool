@@ -9,10 +9,11 @@ $x-kom-blue-color-hover: rgb(0, 112, 204);
 $light-color: #fff;
 $black-color: rgb(35, 35, 35);
 $dark-color: rgb(39, 39, 39);
-$grey-color: rgb(128, 128, 128);
+$grey-color: rgb(135, 135, 135);
 $light-grey-color: rgb(244, 244, 244);
 
 $shadow: 0 5px 14px -5px rgba(0, 0, 0, 1);
+$shadow-hover: 0 10px 24px -5px rgba(0, 0, 0, 1);
 
 $font-text: 'Lato', sans-serif;
 
@@ -32,7 +33,11 @@ body {
   font-size: 14px;
   line-height: 1.7;
   font-family: $font-text;
-  transition: 0.3s;
+  transition: .3s;
+}
+
+h1 {
+  font-size: 18px;
 }
 
 header {
@@ -46,7 +51,10 @@ header {
   z-index: 1;
   background-color: $light-color;
   box-shadow: $shadow;
-  transition: 0.3s;
+  transition: .3s;
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
 }
 
 header h1 {
@@ -67,9 +75,9 @@ header button {
   outline-width: 5px;
   position: relative;
   margin: auto 54px;
-  transition: 0.3s;
+  transition: .3s;
   &:hover {
-    background-color: rgb(90, 90, 90);
+    background-color: $grey-color;
   }
 }
 
@@ -82,7 +90,7 @@ header button {
   margin: 0 4px;
   position: relative;
   width: 10px;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 main {
@@ -93,7 +101,7 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .tool {
@@ -108,10 +116,10 @@ main {
   height: min-content;
   border-radius: 5px;
   box-shadow: $shadow;
-}
-
-h1 {
-  font-size: 18px;
+  transition: .3s;
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
 }
 
 textarea,
@@ -124,7 +132,7 @@ input {
   border-radius: 4px;
   font-family: $font-text;
   resize: none;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 input {
@@ -161,7 +169,7 @@ button {
   height: 40px;
   width: 96px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: .3s;
   &:hover {
     background-color: $x-kom-blue-color-hover;
   }
@@ -175,7 +183,7 @@ button {
 .clear {
   position: absolute;
   top: 48px;
-  transform: translateX(172px);
+  transform: translateX(171px);
   cursor: pointer;
   font-size: 22px;
   background-color: transparent;
@@ -201,11 +209,11 @@ button {
 }
 
 .no_active {
-  background-color: $light-grey-color;
-  color: rgb(245, 245, 245);
+  background-color: rgba(135, 135, 135, 0.5);
+  color: $light-grey-color;
   cursor: default;
   &:hover {
-    background-color: $light-grey-color;
+    background-color: rgb(135, 135, 135, 0.5);
   }
 }
 
@@ -234,7 +242,7 @@ footer {
   justify-content: space-between;
   width: 100%;
   bottom: 0;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 footer p,
@@ -276,7 +284,7 @@ footer a {
 
 .dark header button {
   border: solid 4px $dark-color;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .dark .icon {
@@ -316,10 +324,10 @@ footer a {
 }
 
 .dark .no_active {
-  background-color: $grey-color;
+  background-color: rgb(135, 135, 135, 0.5);
   cursor: default;
   &:hover {
-    background-color: $grey-color;
+    background-color: rgb(135, 135, 135, 0.5);
   }
 }
 
