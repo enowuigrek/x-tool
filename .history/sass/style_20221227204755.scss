@@ -36,21 +36,21 @@ body {
   line-height: 1.7;
 }
 
-.container {
+container {
+  margin: 0 auto;
+  height: 100vw;
+}
+
+main {
+  height: 100%;
+  padding: 24px;
   background-image: linear-gradient(
     180deg,
     #ffffff 0%,
     $x-kom-light-blue-color,
     $x-kom-blue-color
   );
-  margin: 0 auto;
-  height: 100vh;
 }
-
-// main {
-//   height: 100%;
-//   padding: 24px;
-// }
 
 textarea {
   padding: 12px 20px 86px;
