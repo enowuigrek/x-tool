@@ -1,0 +1,212 @@
+$x-kom-light-blue-color: rgb(15, 210, 255);
+$x-kom-blue-color: rgb(0, 130, 250);
+$x-kom-light-violet-color: rgb(195, 130, 250);
+$x-kom-violet-color: rgb(130, 80, 250);
+$x-kom-light-pink-color: rgb(190, 0, 100);
+$x-kom-pink-color: rgb(250, 0, 100);
+$x-kom-blue-color-hover: rgb(0, 112, 204);
+
+$light-color: #fff;
+$dark-color: rgb(39, 39, 39);
+$grey-color: rgb(128, 128, 128);
+
+$shadow: rgb(0 0 0 / 8%) 0px 2px 58px 0px, rgb(0 0 0 / 8%) 0px 0px 36px 12px;
+
+$font-text: 'Lato', sans-serif;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+//
+
+body {
+  margin: 0;
+  color: black;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.7;
+  font-family: $font-text;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+header {
+  top: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  position: fixed;
+  width: 100%;
+  height: 64px;
+  z-index: 1;
+  background: rgb(245, 245, 245);
+  box-shadow: rgb(0 0 0 / 64%) 0px 2px 8px -5px;
+}
+
+header img {
+  position: relative;
+  left: 18px;
+  height: 24px;
+  margin: auto 52px;
+}
+
+main {
+  margin: 120px 0;
+}
+
+.tools {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tool {
+  position: relative;
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33em;
+  background-color: $light-color;
+  height: min-content;
+  border-radius: 5px;
+  box-shadow: $shadow;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+textarea,
+input {
+  padding: 12px 20px 86px;
+  width: 80%;
+  border: 2px solid;
+  color: $grey-color;
+  border-radius: 4px;
+  font-family: $font-text;
+  resize: none;
+}
+
+input {
+  padding: 12px 20px 12px;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  background-color: $x-kom-blue-color;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 9px;
+  text-decoration: none;
+  padding: 0;
+  margin: 24px;
+  height: 40px;
+  width: 96px;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    background-color: $x-kom-blue-color-hover;
+  }
+}
+
+.clear {
+  position: absolute;
+  top: 48px;
+  right: 44px;
+  cursor: pointer;
+  font-size: 22px;
+  background-color: transparent;
+  color: $grey-color;
+  font-family: 'Gruppo', cursive;
+  margin: 5px;
+  height: 20px;
+  width: 20px;
+  &:hover {
+    background-color: transparent;
+    color: black;
+  }
+}
+
+.result {
+  text-align: end;
+  margin: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.copy {
+  transform: translate(72px, -14px);
+  position: absolute;
+  background-color: transparent;
+  font-size: 18px;
+  color: $grey-color;
+  margin: 2px;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  &:hover {
+    transform: translate(74px, -16px);
+    background-color: transparent;
+    color: $x-kom-blue-color-hover;
+  }
+}
+
+.no_distplay {
+  display: none;
+}
+
+.test {
+  color: red;
+}
+
+
+.selected {
+  color: $grey-color;
+}
+
+.selected::selection {
+  background-color: transparent;
+}
+
+#sku_from_input {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $x-kom-blue-color;
+}
+
+footer {
+  height: 34px;
+  background-color: $dark-color;
+  color: $light-color;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 0;
+}
+
+footer p, a {
+  margin: 0 36px;
+}
+
+footer a {
+  color: $light-color;
+  margin: 0;
+  &:hover {
+    color: $x-kom-pink-color;
+  }
+}
