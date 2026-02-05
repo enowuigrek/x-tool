@@ -237,42 +237,42 @@ skuOption.addEventListener('click', () => {
 
     if (skuOption.classList.contains('on')) {
         findSku.classList.remove('no_display');
-        setTimeout(function () {
-            findSku.classList.remove('tool_hide');
-        });
+        // setTimeout(function () {
+        //     findSku.classList.remove('tool_hide');
+        // });
     } else {
         findSku.classList.add('tool_hide');
-        setTimeout(function () {
+        // setTimeout(function () {
             findSku.classList.add('no_display');
-        }, 200);
+        // }, 200);
     }
 });
 orderOption.addEventListener('click', () => {
     orderOption.classList.toggle('on');
     if (orderOption.classList.contains('on')) {
         order.classList.remove('no_display');
-        setTimeout(function () {
-            order.classList.remove('tool_hide');
-        });
+        // setTimeout(function () {
+        //     order.classList.remove('tool_hide');
+        // });
     } else {
         order.classList.add('tool_hide');
-        setTimeout(function () {
+        // setTimeout(function () {
             order.classList.add('no_display');
-        }, 200);
+        // }, 200);
     }
 });
 enigmaOption.addEventListener('click', () => {
     enigmaOption.classList.toggle('on');
     if (enigmaOption.classList.contains('on')) {
         enigma.classList.remove('no_display');
-        setTimeout(function () {
-            enigma.classList.remove('tool_hide');
-        });
+        // setTimeout(function () {
+        //     enigma.classList.remove('tool_hide');
+        // });
     } else {
         enigma.classList.add('tool_hide');
-        setTimeout(function () {
+        // setTimeout(function () {
             enigma.classList.add('no_display');
-        }, 200);
+        // }, 200);
     }
 });
 
