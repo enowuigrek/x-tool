@@ -1,0 +1,20 @@
+let sku = '123456';
+let splitSku = sku.split('');
+let skuLenght = splitSku.length;
+
+
+console.log(skuLenght);
+
+function addZeros(){
+  if (splitSku.length >= 6 ){
+    splitSku = '0,0,' + splitSku;
+  }
+}
+
+addZeros(12345678);
+
+console.log(splitSku);
+
+
+// console.log(splitSku);
+
