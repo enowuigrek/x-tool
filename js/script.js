@@ -173,6 +173,7 @@ const renderOrderLink = () => {
             } else {
                 let resultOrderLinkHref = `<a href= ${orderLink} target="_blank"> ${orderNumber} </a>`;
                 resultOrderLink.innerHTML = resultOrderLinkHref;
+                inputOrderNumber.value = '';
             }
         }
     } else if (!orderNumber) {
