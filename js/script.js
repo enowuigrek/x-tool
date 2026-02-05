@@ -18,7 +18,9 @@ const orderLinkButton = document.getElementById('order_link_button');
 
 //Copy Buttons
 const copyskuListButton = document.getElementById('copy_sku_list_button');
-const copyListFromMessageButton = document.getElementById('copy_sku_list_from_message_button');
+const copyListFromMessageButton = document.getElementById(
+  'copy_sku_list_from_message_button'
+);
 
 //Clear Buttons
 const clearSkuInputButton = document.getElementById('clear_sku');
@@ -59,7 +61,8 @@ const checkSku = (sku) => {
   }
 };
 const copySku = (result) => {
-  if (result.textContent.includes('Wklej sku oddzielone spacją lub enterem') ||
+  if (
+    result.textContent.includes('Wklej sku oddzielone spacją lub enterem') ||
     result.textContent.includes('Nie znalazłem sku w tym tekście') ||
     result.textContent.includes('Lista na stronie')
   ) {
@@ -68,8 +71,11 @@ const copySku = (result) => {
   result.classList.add('selected');
   result.classList.add('copied');
   let selObj = window.getSelection();
-    selObj.selectAllChildren(result);
-    document.execCommand('copy');
+  selObj.selectAllChildren(result);
+  document.execCommand('copy');
+  setTimeout(() => {
+    selObj.removeAllRanges()
+  }, .1);
   setTimeout(() => {
     result.classList.remove('copied');
   }, 150);
@@ -100,7 +106,7 @@ const generateSkuFromMessageArr = (input) => {
     let skuFromText = splitInputText[foundIndex + 1];
     if (skuFromText.endsWith(')')) {
       skuFromText = skuFromText.replace(/\)$/, '');
-    };
+    }
     skuFromText = checkSku(skuFromText);
     listSkuArr.push(skuFromText);
   };
@@ -271,35 +277,35 @@ copyListFromMessageButton.addEventListener('click', () => {
   copySku(resultSkuFromMessage);
 });
 resultSkuFromInput.addEventListener('click', () => {
-  resultSkuFromInput.classList.remove('selected')
+  resultSkuFromInput.classList.remove('selected');
 });
 resultSkuFromMessage.addEventListener('click', () => {
-  resultSkuFromMessage.classList.remove('selected')
+  resultSkuFromMessage.classList.remove('selected');
 });
 
 //DARK MODE
 
-const switchButton = document.querySelector("header button");
-let theme = localStorage.getItem("theme");
+const switchButton = document.querySelector('header button');
+let theme = localStorage.getItem('theme');
 
-switchButton.addEventListener("click", () => {
-    if (theme === "dark") {
-        document.querySelector("body").classList.remove("dark");
-        document.querySelector("body").classList.add("light");
-        theme = "light";
-    } else {
-        document.querySelector("body").classList.remove("light");
-        document.querySelector("body").classList.add("dark");
-        theme = "dark";
-    }
+switchButton.addEventListener('click', () => {
+  if (theme === 'dark') {
+    document.querySelector('body').classList.remove('dark');
+    document.querySelector('body').classList.add('light');
+    theme = 'light';
+  } else {
+    document.querySelector('body').classList.remove('light');
+    document.querySelector('body').classList.add('dark');
+    theme = 'dark';
+  }
 
-    localStorage.setItem("theme", theme);
+  localStorage.setItem('theme', theme);
 });
 
-if (theme === "dark") {
-    document.querySelector("body").classList.add("dark");
+if (theme === 'dark') {
+  document.querySelector('body').classList.add('dark');
 }
 
-if (theme === "light") {
-    document.querySelector("body").classList.add("light");
+if (theme === 'light') {
+  document.querySelector('body').classList.add('light');
 }

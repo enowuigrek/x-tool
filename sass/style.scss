@@ -179,8 +179,8 @@ button {
   color: $grey-color;
   font-family: 'Gruppo', cursive;
   margin: 5px;
-  height: 20px;
-  width: 20px;
+  height: 22px;
+  width: 22px;
   &:hover {
     background-color: transparent;
     color: black;
@@ -204,6 +204,10 @@ button {
   &:hover {
     background-color: $light-grey-color;
   }
+}
+
+.copied {
+  color: $grey-color;
 }
 
 .selected *::selection {
@@ -239,10 +243,6 @@ footer a {
   &:hover {
     color: $x-kom-pink-color;
   }
-}
-
-.copied {
-  color: $grey-color;
 }
 
 //DARK MODE
