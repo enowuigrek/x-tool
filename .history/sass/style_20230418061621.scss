@@ -26,7 +26,6 @@ $font-text: 'Lato', sans-serif;
 //
 
 body {
-  background-color: rgb(240, 240, 240);
   margin: 0 auto;
   color: $dark-color;
   font-weight: 300;
@@ -104,6 +103,7 @@ main {
   justify-content: center;
   align-items: center;
   width: 33em;
+  background-color: rgb(252, 252, 252);
   height: min-content;
   border-radius: 5px;
   box-shadow: $shadow;
@@ -117,7 +117,7 @@ textarea,
 input {
   padding: 12px 20px 86px;
   width: 80%;
-  border: 2px solid;
+  border: px solid;
   color: $grey-color;
   border-radius: 4px;
   font-family: $font-text;
@@ -206,7 +206,7 @@ button {
   }
 }
 
-.selected *::selection {
+.selected::selection {
   background-color: transparent;
 }
 

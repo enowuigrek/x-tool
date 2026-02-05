@@ -26,7 +26,6 @@ $font-text: 'Lato', sans-serif;
 //
 
 body {
-  background-color: rgb(240, 240, 240);
   margin: 0 auto;
   color: $dark-color;
   font-weight: 300;
@@ -206,7 +205,7 @@ button {
   }
 }
 
-.selected *::selection {
+.selected::selection {
   background-color: transparent;
 }
 

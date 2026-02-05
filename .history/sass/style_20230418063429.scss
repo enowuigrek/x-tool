@@ -130,6 +130,7 @@ input {
 }
 
 textarea::-webkit-scrollbar {
+  -moz-selection
   display: none;
 }
 
