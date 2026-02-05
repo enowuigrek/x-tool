@@ -189,7 +189,7 @@ button:hover {
 .copied {
   color: rgb(128, 128, 128);
   transform: translateY(3px);
-  transition: color 0.3s, transform 0.3s;
+  transition: color 0.1s, transform 0.1s;
 }
 
 .selected *::-moz-selection {

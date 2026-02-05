@@ -209,7 +209,7 @@ button {
 .copied {
   color: $grey-color;
   transform: translateY(3px);
-  transition: color 0.3s, transform 0.3s;
+  transition: color 0.1s, transform 0.1s;
 }
 
 .selected *::selection {
