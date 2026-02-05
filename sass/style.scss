@@ -14,7 +14,7 @@ $light-color: #fff;
 $shadow: rgb(0 0 0 / 8%) 0px 2px 58px 0px, rgb(0 0 0 / 8%) 0px 0px 2px 1px;
 
 /* Fonts */
-$font-text: "Lato", sans-serif;
+$font-text: 'Lato', sans-serif;
 
 /* Global */
 *,
@@ -28,8 +28,7 @@ h1 {
 }
 
 body {
-  height: 100%;
-  margin: 0 auto;
+  margin: 0;
   font-family: $font-text;
   color: black;
   font-weight: 300;
@@ -38,22 +37,41 @@ body {
 }
 
 container {
-  min-height: 100%;
+  margin: 0 auto;
+  height: 100vw;
 }
 
 main {
-  background-image: linear-gradient(180deg, #FFFFFF 0%, $x-kom-light-blue-color, $x-kom-blue-color);
-  
+  height: 100%;
+  padding: 24px;
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    $x-kom-light-blue-color,
+    $x-kom-blue-color
+  );
 }
 
 textarea {
   font-family: $font-text;
-  padding: 12px 20px 86px ;
+  padding: 12px 20px 86px;
   width: 80%;
   border: 2px solid;
   color: rgb(128, 128, 128);
   border-radius: 2px;
   resize: none;
+}
+
+input{
+  font-family: $font-text;
+  padding: 12px 20px 12px;
+  border: 2px solid;
+  color: rgb(128, 128, 128);
+  border-radius: 2px;
+}
+
+.input_order_number{
+
 }
 
 button {
@@ -68,7 +86,7 @@ button {
   height: 40px;
   width: 96px;
   cursor: pointer;
-  transition: .1s;
+  transition: 0.1s;
   &:hover {
     background-color: $x-kom-blue-color-hover;
   }
@@ -147,56 +165,58 @@ header {
 }
 
 // CHRISTMAS
-$globe-width:   12px;
-$globe-height:  28px;
+$globe-width: 12px;
+$globe-height: 28px;
 $globe-spacing: 40px;
 $globe-spread: 3px;
 $light-off-opacity: 0.4;
 
-.lightrope {
+.light_rope {
+  display: flex;
+  justify-content: center;
   flex-direction: row;
-  text-align: center;
-  white-space: nowrap;
   margin: -15px 0 9px;
   padding: 0;
   pointer-events: none;
   width: 100%;
   li {
     position: relative;
-    animation-fill-mode: both; 
-    animation-iteration-count:infinite;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
     list-style: none;
     padding: 10px;
-    display: block;
     width: $globe-width;
     height: $globe-height;
     border-radius: 50%;
     margin: $globe-spacing/2;
     display: inline-block;
     background: $x-kom-light-pink-color;
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,247,165,1);
+    box-shadow: 0 $globe-height/6 $globe-width * 2 $globe-spread
+      rgba(0, 247, 165, 1);
     animation-name: flash-1;
     animation-duration: 2s;
-    &:nth-child(2n+1) {
+    &:nth-child(2n + 1) {
       background: $x-kom-blue-color;
-      box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,255,255,0.5);
+      box-shadow: 0 $globe-height/6 $globe-width * 2 $globe-spread
+        rgba(0, 255, 255, 0.5);
       animation-name: flash-2;
       animation-duration: 0.4s;
     }
-    &:nth-child(4n+2) {
+    &:nth-child(4n + 2) {
       background: $x-kom-violet-color;
-      box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247,0,148,1);
+      box-shadow: 0 $globe-height/6 $globe-width * 2 $globe-spread
+        rgba(247, 0, 148, 1);
       animation-name: flash-3;
       animation-duration: 1.1s;
     }
     &:nth-child(odd) {
       animation-duration: 1.8s;
     }
-    &:nth-child(3n+1) {
+    &:nth-child(3n + 1) {
       animation-duration: 1.4s;
     }
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       background: #222;
       width: ($globe-width - 2);
@@ -206,7 +226,7 @@ $light-off-opacity: 0.4;
       left: 1px;
     }
     &:after {
-      content: "";
+      content: '';
       top: (0 - $globe-height/2);
       left: $globe-width - 3;
       position: absolute;
@@ -224,74 +244,105 @@ $light-off-opacity: 0.4;
   }
 }
 @keyframes flash-1 {
-    0%, 100% { background: $x-kom-blue-color;
-    box-shadow: 0px $globe-height/6 $globe-width*2 $x-kom-light-blue-color;}
-    50% { background: rgba($x-kom-light-blue-color,$light-off-opacity);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,247,165,0.1);}
+  0%,
+  100% {
+    background: $x-kom-blue-color;
+    box-shadow: 0 $globe-height/6 $globe-width * 2 $x-kom-light-blue-color;
+  }
+  50% {
+    background: rgba($x-kom-light-blue-color, $light-off-opacity);
+    box-shadow: 0 $globe-height/6 $globe-width * 2 $globe-spread
+      rgba(0, 247, 165, 0.1);
+  }
 }
 @keyframes flash-2 {
-    0%, 100% { background: $x-kom-violet-color;
-    box-shadow: 0px $globe-height/6 $globe-width*2 $x-kom-light-violet-color;}
-    50% { background: rgba($x-kom-light-violet-color ,$light-off-opacity);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,255,255,0.1);}
+  0%,
+  100% {
+    background: $x-kom-violet-color;
+    box-shadow: 0 $globe-height/6 $globe-width * 2 $x-kom-light-violet-color;
+  }
+  50% {
+    background: rgba($x-kom-light-violet-color, $light-off-opacity);
+    box-shadow: 0 $globe-height/6 $globe-width * 2 $globe-spread
+      rgba(0, 255, 255, 0.1);
+  }
 }
 @keyframes flash-3 {
-    0%, 100% { background: $x-kom-pink-color;
-    box-shadow: 0px $globe-height/6 $globe-width*2 $x-kom-light-pink-color;}
-    50% { background: $x-kom-light-pink-color;
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247,0,148,0.1);}
+  0%,
+  100% {
+    background: $x-kom-pink-color;
+    box-shadow: 0 $globe-height/6 $globe-width * 2 $x-kom-light-pink-color;
+  }
+  50% {
+    background: $x-kom-light-pink-color;
+    box-shadow: 0 $globe-height/6 $globe-width * 2 $globe-spread
+      rgba(247, 0, 148, 0.1);
+  }
 }
-
 
 $snowflakes: 100;
 
 %snowflake {
-	display: block;
-	color: $light-color;
-	position: absolute;
-	top: -1em;
+  display: block;
+  color: $light-color;
+  position: absolute;
+  top: -1em;
 
-	&:before {
-		display: block;
-		content: '❄';
-	}
+  &:before {
+    display: block;
+    content: '❄';
+  }
 }
 
 @mixin snowflake($nth) {
-	snowflake {
-		@extend %snowflake;
-		&:nth-of-type(#{$nth}) {
-			font-size: 1vmin + random();
-			left: 100vw * random();
-			will-change: transform, top;
-			$delay: 1s + 4 * random();
-			$fall-duration: 4s + 4 * random();
-			$shake-duration: 6s + 4 * random();
-			animation: snowflake-fall $fall-duration linear $delay infinite normal,
-				snowflake-shake $shake-duration ease-in-out $delay infinite alternate,
-				snowflake-wind-w $fall-duration linear $delay infinite normal;
-		}
-	}
+  snowflake {
+    @extend %snowflake;
+    &:nth-of-type(#{$nth}) {
+      font-size: 1vmin + random();
+      left: 100vw * random();
+      will-change: transform, top;
+      $delay: 1s + 4 * random();
+      $fall-duration: 4s + 4 * random();
+      $shake-duration: 6s + 4 * random();
+      animation: snowflake-fall $fall-duration linear $delay infinite normal,
+        snowflake-shake $shake-duration ease-in-out $delay infinite alternate,
+        snowflake-wind-w $fall-duration linear $delay infinite normal;
+    }
+  }
 }
 
 @keyframes snowflake-fall {
-	0% {top: -1em}
-	100% {top: 100vh}
+  0% {
+    top: -1em;
+  }
+  100% {
+    top: 90vh;
+  }
 }
 
 @keyframes snowflake-shake {
-	0% {transform: translateX(0)}
-	33% {transform: translateX(-10vh)}
-	100% {transform: translateX(10vh)}
+  0% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-10vh);
+  }
+  100% {
+    transform: translateX(10vh);
+  }
 }
 
 @keyframes snowflake-wind-w {
-	0% {transform: translateX(0)}
-	100% {transform: translateX(20vw)}
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-22vw);
+  }
 }
 
 snowflakes {
-	@for $i from 1 through $snowflakes {
-		@include snowflake($i);
-	}	
+  @for $i from 1 through $snowflakes {
+    @include snowflake($i);
+  }
 }
