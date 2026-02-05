@@ -70,7 +70,7 @@ const findSkuInMessage = (input) => {
             const skuFromLink = new RegExp(/\/p\/(\d*)/);
             listSkuArr.push(checkSku(skuFromLink.exec(word)[1]));
         } else if (searchWords.includes(word)) {
-            listSkuArr.push(checkSku(inputWords[index + 1]));
+            listSkuArr.push(inputWords[index + 1].replace(/\D$/, ''));
         }
     });
 };
