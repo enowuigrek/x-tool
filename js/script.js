@@ -106,19 +106,26 @@ const findSkuInMessage = (input) => {
     const searchWords = ['x-kom:', 'xkom:', 'sku:', 'sku', 'x', 'code:'];
 
     inputWords.forEach((word, index) => {
+        // Obsługa standardowych linków x-kom.pl/p/
         if (word.includes('https://www.x-kom.pl/p/')) {
             const skuFromLink = new RegExp(/\/p\/(\d*)/);
-            listSkuArr.push(checkSku(skuFromLink.exec(word)[1]));
-        } else if (searchWords.includes(word)) {
+            const match = skuFromLink.exec(word);
+            if (match) {
+                listSkuArr.push(checkSku(match[1]));
+            }
+        }
+        // Obsługa linków B2B x-kom.pl
+        else if (word.includes('https://b2b.x-kom.pl/Sales/Item/Index/')) {
+            const skuFromB2BLink = new RegExp(/\/Index\/(\d+)/);
+            const match = skuFromB2BLink.exec(word);
+            if (match) {
+                listSkuArr.push(checkSku(match[1]));
+            }
+        }
+        // Obsługa słów kluczowych
+        else if (searchWords.includes(word)) {
             listSkuArr.push(checkSku(inputWords[index + 1].replace(/\D$/, '')));
         }
-    });
-};
-const tryItIfYouCantFind = (input) => {
-    const inputWords = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
-
-    inputWords.forEach((word) => {
-        listSkuArr.push(checkSku(Math.abs(word.replace(/\D$/, ''))));
     });
 };
 
