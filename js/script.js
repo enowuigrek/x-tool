@@ -18,11 +18,14 @@ const inputOrderNumber = document.getElementById('input_order_number');
 const inputOTRS = document.getElementById('input_otrs');
 
 //Buttons
+const hamburgerBtn = document.getElementById('hamburgerButton');
+
 const listSkuBtn = document.getElementById('list_sku_btn');
 const linkSkuBtn = document.getElementById('link_sku_btn');
 const orderLinkBtn = document.getElementById('order_link_btn');
 const enigmaBtn = document.getElementById('enigma_btn');
-const hamburgerBtn = document.getElementById('hamburgerButton');
+
+//Close Buttons
 const closeSkuBtn = document.getElementById('close_sku');
 const closeOrderBtn = document.getElementById('close_order');
 const closeEnigmaBtn = document.getElementById('close_enigma');
@@ -56,10 +59,8 @@ const delateDuplicateAndUndefined = () => {
     listSkuArr = listSkuArr.filter((item) => item !== undefined);
 };
 const checkSku = (sku) => {
-    //remove zero
     sku = Number(sku);
     sku = String(sku);
-    //ad zero if length is 7
     if (sku.length >= 5 && sku.length <= 6) {
         return sku;
     } else if (sku.length == 7) {
@@ -80,10 +81,9 @@ const copySku = (result) => {
     selObj.removeAllRanges();
 };
 
-//Aside
+//-------- Aside --------
 hamburgerBtn.addEventListener('click', function () {
     const main = document.querySelector('main');
-
     main.classList.toggle('main_open');
     aside.classList.toggle('open');
     hamburgerBtn.classList.toggle('open');
@@ -96,6 +96,7 @@ hamburgerBtn.addEventListener('click', function () {
     }
 });
 
+//-------- TOOLS --------
 // SKU finder
 const findSkuInMessage = (input) => {
     const inputWords = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
@@ -145,7 +146,7 @@ const asLink = () => {
     copySkuBtn.classList.add('no_active');
 };
 
-//Render in HTML
+//-------- Render in HTML --------
 const renderSku = (isLink) => {
     clearlistSku(listSkuArr);
     findSkuInMessage(inputMessage.value);
@@ -218,7 +219,6 @@ const renderOrderLink = () => {
         resultOrderLink.innerHTML = 'To nie jest numer zamówienia';
     }
 };
-
 const decipher = () => {
     let text = inputOTRS.value;
     text = text.replace(/\\n/g, '<br>');
@@ -226,71 +226,58 @@ const decipher = () => {
     resultOTRS.innerHTML = text;
 };
 
-//Event Listeners
+//-------- Event Listeners --------
+//Buttons
 listSkuBtn.addEventListener('click', asList);
 linkSkuBtn.addEventListener('click', asLink);
 orderLinkBtn.addEventListener('click', renderOrderLink);
 enigmaBtn.addEventListener('click', decipher);
 
+//Aside Options
 skuOption.addEventListener('click', () => {
     skuOption.classList.toggle('on');
 
     if (skuOption.classList.contains('on')) {
         findSku.classList.remove('no_display');
-        // setTimeout(function () {
-        //     findSku.classList.remove('tool_hide');
-        // });
     } else {
         findSku.classList.add('tool_hide');
-        // setTimeout(function () {
-            findSku.classList.add('no_display');
-        // }, 200);
+        findSku.classList.add('no_display');
     }
 });
 orderOption.addEventListener('click', () => {
     orderOption.classList.toggle('on');
     if (orderOption.classList.contains('on')) {
         order.classList.remove('no_display');
-        // setTimeout(function () {
-        //     order.classList.remove('tool_hide');
-        // });
     } else {
         order.classList.add('tool_hide');
-        // setTimeout(function () {
-            order.classList.add('no_display');
-        // }, 200);
+        order.classList.add('no_display');
     }
 });
 enigmaOption.addEventListener('click', () => {
     enigmaOption.classList.toggle('on');
     if (enigmaOption.classList.contains('on')) {
         enigma.classList.remove('no_display');
-        // setTimeout(function () {
-        //     enigma.classList.remove('tool_hide');
-        // });
     } else {
         enigma.classList.add('tool_hide');
-        // setTimeout(function () {
-            enigma.classList.add('no_display');
-        // }, 200);
+        enigma.classList.add('no_display');
     }
 });
 
+//Close
 closeSkuBtn.addEventListener('click', () => {
     skuOption.classList.remove('on');
     findSku.classList.add('no_display');
 });
-
 closeOrderBtn.addEventListener('click', () => {
     orderOption.classList.remove('on');
     order.classList.add('no_display');
 });
-
 closeEnigmaBtn.addEventListener('click', () => {
     enigmaOption.classList.remove('on');
     enigma.classList.add('no_display');
 });
 
+//Clear
 clearMessageInputBtn.addEventListener('click', () => {
     if (!inputMessage.value) {
         resultSku.innerHTML = '';
@@ -301,14 +288,12 @@ clearMessageInputBtn.addEventListener('click', () => {
     }
     inputMessage.value = '';
 });
-
 clearOrderInputBtn.addEventListener('click', () => {
     if (!inputOrderNumber.value) {
         resultOrderLink.innerHTML = '';
     }
     inputOrderNumber.value = '';
 });
-
 clearOTRSInputBtn.addEventListener('click', () => {
     if (!inputOTRS.value) {
         resultOTRS.innerHTML = '';
@@ -316,6 +301,7 @@ clearOTRSInputBtn.addEventListener('click', () => {
     inputOTRS.value = '';
 });
 
+//Copy
 copySkuBtn.addEventListener('mousedown', () => {
     copySku(resultSku);
 });

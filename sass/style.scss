@@ -89,13 +89,13 @@ header button {
 
 aside {
     z-index: 1;
-    width: 42px;
+    // width: 42px;
     height: 100%;
     position: fixed;
     margin: 120px auto 0 0;
     border-radius: 5px;
     box-shadow: $shadow;
-    display: flex;
+    // display: flex;
     flex-direction: column;
     background-color: $white;
     transition: 0.3s ease;
@@ -151,23 +151,27 @@ aside {
     width: 240px;
 }
 
+.options {
+    margin-left: 54px;
+}
+
 .options_header {
     display: flex;
     align-items: center;
 }
 
 .options_header h1 {
-    margin: 15px 18px 15px 54px;
+    margin: 0;
 }
 
 .options_header i {
-    margin: 0;
+    margin: 15px 18px 15px 0;
     font-size: 18px;
 }
 
 aside p,
 aside a {
-    margin-left: 54px;
+    margin-left: 38px;
     color: $grey;
     line-height: 0.1;
     &:hover {
@@ -513,15 +517,14 @@ footer a {
 /* Ustawienie koloru paska przewijania w poziomie (jeśli występuje) */
 ::-webkit-scrollbar {
     background-color: black; /* Kolor tła paska przewijania */
-  }
-  
-  /* Ustawienie koloru "track", czyli tła paska przewijania */
-  ::-webkit-scrollbar-track {
-    background-color: black;  /* Kolor tła paska przewijania */
-  }
-  
-  /* Ustawienie koloru "thumb", czyli samego "uchwytu" paska przewijania */
-  ::-webkit-scrollbar-thumb {
-    background-color: $black;/* Kolor uchwytu paska przewijania */
-  }
-  
+}
+
+/* Ustawienie koloru "track", czyli tła paska przewijania */
+::-webkit-scrollbar-track {
+    background-color: black; /* Kolor tła paska przewijania */
+}
+
+/* Ustawienie koloru "thumb", czyli samego "uchwytu" paska przewijania */
+::-webkit-scrollbar-thumb {
+    background-color: $black; /* Kolor uchwytu paska przewijania */
+}
