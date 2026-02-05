@@ -25,18 +25,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.19",
     "browser-sync": "^3.0.2",
-    "eslint": "^8.56.0",
-    "html-validate": "^8.9.1",
+    "eslint": "^8.57.0",
+    "html-validate": "^8.18.0",
     "mkdirp": "^3.0.1",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.70.0",
-    "stylelint": "^16.2.1",
-    "stylelint-scss": "^6.1.0"
+    "sass": "^1.72.0",
+    "stylelint": "^16.3.1",
+    "stylelint-scss": "^6.2.1"
   },
   "prettier": {
     "semi": true,

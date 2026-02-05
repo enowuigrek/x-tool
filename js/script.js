@@ -6,11 +6,13 @@ const options = document.querySelector('.options');
 const skuOption = document.getElementById('sku_option');
 const orderOption = document.getElementById('order_option');
 const enigmaOption = document.getElementById('enigma_option');
+const clientOption = document.getElementById('client_option');
 
 //Tools
 const findSku = document.getElementById('find_sku');
 const order = document.getElementById('order');
 const enigma = document.getElementById('enigma');
+const clientTable = document.getElementById('client_tabble');
 
 //Inputs
 const inputMessage = document.getElementById('input_message');
@@ -29,6 +31,7 @@ const enigmaBtn = document.getElementById('enigma_btn');
 const closeSkuBtn = document.getElementById('close_sku');
 const closeOrderBtn = document.getElementById('close_order');
 const closeEnigmaBtn = document.getElementById('close_enigma');
+const closeTableBtn = document.getElementById('close_table');
 
 //Copy Button
 const copySkuBtn = document.getElementById('copy_sku');
@@ -226,6 +229,53 @@ const decipher = () => {
     resultOTRS.innerHTML = text;
 };
 
+// Dodaj tę funkcję do twojego pliku script.js
+const generateTable = () => {
+    const data = {
+        Branża: document.getElementById('branch').value,
+        'Wielkość firmy, obrót': document.getElementById('size').value,
+        'Liczba pracowników': document.getElementById('employees').value,
+        'Liczba pracowników biurowych':
+            document.getElementById('officeWorkers').value,
+        'Wywiad z klientem, opis firmy':
+            document.getElementById('meetingSummary').value,
+        'Potencjalne potrzeby zakupowe':
+            document.getElementById('purchaseNeeds').value,
+        Asortyment: document.getElementById('assortment').value,
+        'Przewidywany obrót':
+            document.getElementById('predictedTurnover').value,
+        'Klasyfikacja wstępna': document.getElementById('initialClassification')
+            .value,
+    };
+
+    let tableHTML = "<table border='1'><tbody>";
+    Object.keys(data).forEach((key) => {
+        tableHTML += `<tr><td>${key}</td><td>${data[key]}</td></tr>`;
+    });
+    tableHTML += '</tbody></table>';
+
+    document.getElementById('tableContainer').innerHTML = tableHTML;
+};
+
+function copyTable() {
+    let tableText = '';
+    const rows = document.querySelectorAll('#tableContainer table tr');
+
+    rows.forEach((row) => {
+        let rowData = [];
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell) => {
+            rowData.push(cell.innerText);
+        });
+        tableText += rowData.join('\t') + '\r\n'; // tabulator i znak nowego wiersza
+    });
+
+    navigator.clipboard
+        .writeText(tableText)
+        .then(() => alert('Tabela skopiowana do schowka!'))
+        .catch((err) => console.error('Błąd podczas kopiowania', err));
+}
+
 //-------- Event Listeners --------
 //Buttons
 listSkuBtn.addEventListener('click', asList);
@@ -263,6 +313,15 @@ enigmaOption.addEventListener('click', () => {
     }
 });
 
+clientOption.addEventListener('click', () => {
+    clientOption.classList.toggle('on');
+    if (clientOption.classList.contains('on')) {
+        clientTable.classList.remove('no_display');
+    } else {
+        clientTable.classList.add('tool_hide');
+        clientTable.classList.add('no_display');
+    }
+});
 //Close
 closeSkuBtn.addEventListener('click', () => {
     skuOption.classList.remove('on');
@@ -275,6 +334,10 @@ closeOrderBtn.addEventListener('click', () => {
 closeEnigmaBtn.addEventListener('click', () => {
     enigmaOption.classList.remove('on');
     enigma.classList.add('no_display');
+});
+closeTableBtn.addEventListener('click', () => {
+    clientOption.classList.remove('on');
+    clientTable.classList.add('no_display');
 });
 
 //Clear
