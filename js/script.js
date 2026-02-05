@@ -134,7 +134,7 @@ const createlinkToListSku = (arr) => {
 const asList = () => {
     const isLink = false;
     renderSku(isLink);
-    if (inputMessage.value) {
+    if (checkSku(inputMessage.value)) {
         copySkuBtn.classList.remove('no_active');
     }
 };
