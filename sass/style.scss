@@ -110,7 +110,7 @@ aside {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 6px 0;
     width: 40px;
     height: 40px;
     background-color: transparent;
@@ -123,7 +123,7 @@ aside {
 }
 
 .hamburger.open {
-    transform: translateX(100px);
+    transform: translateX(94px);
 }
 
 .line {
@@ -192,10 +192,8 @@ aside a {
 }
 
 main {
-    // max-width: 1062px;
-    max-width: 1302px;
+    // max-width: 1302px;
     padding-left: 42px;
-    // padding-left: 242px;
     margin: 120px auto;
     display: flex;
     justify-content: center;
@@ -511,3 +509,19 @@ footer a {
 .dark .tool a {
     color: $light-blue;
 }
+
+/* Ustawienie koloru paska przewijania w poziomie (jeśli występuje) */
+::-webkit-scrollbar {
+    background-color: black; /* Kolor tła paska przewijania */
+  }
+  
+  /* Ustawienie koloru "track", czyli tła paska przewijania */
+  ::-webkit-scrollbar-track {
+    background-color: black;  /* Kolor tła paska przewijania */
+  }
+  
+  /* Ustawienie koloru "thumb", czyli samego "uchwytu" paska przewijania */
+  ::-webkit-scrollbar-thumb {
+    background-color: $black;/* Kolor uchwytu paska przewijania */
+  }
+  
