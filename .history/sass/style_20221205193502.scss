@@ -1,0 +1,161 @@
+/* Variables */
+
+/* Colors */
+
+$x-kom-light-blue-color: rgb(15, 210, 255);
+$x-kom-blue-color: rgb(0, 130, 250);
+$x-kom-light-violet-color: rgb(195, 130, 250);
+$x-kom-violet-color: rgb(130, 80, 250);
+$x-kom-light-pink-color: rgb(190, 0, 100);
+$x-kom-pink-color: rgb(250, 0, 100);
+$x-kom-blue-color-hover: rgb(0, 112, 204);
+$light-color: #fff;
+$wrong-sku-color: rgb(192, 0, 0);
+
+$shadow: rgb(0 0 0 / 8%) 0px 2px 58px 0px,
+         rgb(0 0 0 / 8%) 0px 0px 2px 1px;
+
+
+/* Fonts */
+$font-text: 'Lato', sans-serif;
+
+/* Global */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1{
+  font-size: 18px;;
+}
+
+
+body {
+  height: 100%;
+  margin: 0 auto;
+  font-family: $font-text;
+  color: black;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.7;
+  background-color: rgb(255, 255, 255);
+}
+
+container {
+  min-height: 100%;
+}
+
+textarea {
+  font-family: $font-text;
+  padding: 12px 20px 86px ;
+  width: 80%;
+  border: 2px solid;
+  color: rgb(128, 128, 128);
+  border-radius: 2px;
+  resize: none;
+}
+
+button {
+  background-color: $x-kom-blue-color;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 9px;
+  text-decoration: none;
+  padding: 0px;
+  margin: 24px;
+  height: 40px;
+  width: 96px;
+  cursor: pointer;
+  transition: .1s;
+  &:hover {
+    background-color: $x-kom-blue-color-hover
+  }
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  padding: 0;
+  align-items: center;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: $x-kom-blue-color;
+}
+
+/* Class */
+
+.box {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33em;
+  height: min-content;
+  border-radius: 2px;
+  background-color: $light-color;
+  box-shadow: $shadow;
+}
+
+.tools{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sku__to__copy p {
+  margin: 0;
+}
+
+.wrong__sku{
+  margin-top: ;
+}
+
+.wrong__sku p {
+  color: $wrong-sku-color;
+  margin: 0;
+}
+
+.input__order__number {
+  padding: 12px 12px 0;
+}
+
+.order__link {
+  margin-bottom: 12px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 64px;
+  background-color: $light-color;
+  border-bottom: solid $x-kom-blue-color;
+  margin-bottom: 24px;
+}
+
+.logo{
+  height: 24px;
+  margin: auto 64px;
+}
+
+.options {
+  display: flex;
+  margin: auto 66px;
+}
+
+.option {
+  margin: 0 56px 0 0;
+  cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
+}
