@@ -5,8 +5,6 @@ const inputMessage = document.getElementById('input_links');
 const inputOrderNumber = document.getElementById('input_order_number');
 
 //Buttons
-// const skuListButton = document.getElementById('sku_list_button');
-// const skuLinkButton = document.getElementById('sku_link_button');
 const skuListFromMessageButton = document.getElementById(
   'sku_list_from_message_button'
 );
@@ -16,18 +14,15 @@ const skuLinkFromMessageButton = document.getElementById(
 const orderLinkButton = document.getElementById('order_link_button');
 
 //Copy Buttons
-// const copyskuListButton = document.getElementById('copy_sku_list_button');
 const copyListFromMessageButton = document.getElementById(
   'copy_sku_list_from_message_button'
 );
 
 //Clear Buttons
-// const clearSkuInputButton = document.getElementById('clear_sku');
 const clearMessageInputButton = document.getElementById('clear_message');
 const clearOrderInputButton = document.getElementById('clear_order');
 
 //Result
-// const resultSkuFromInput = document.getElementById('sku_from_input');
 const resultSkuFromMessage = document.getElementById('sku_from_message');
 const resultOrderLink = document.getElementById('order_link');
 
@@ -41,6 +36,8 @@ const clearlistSku = () => {
   resultLink = '';
   listSkuArr.length = 0;
 };
+
+//TODO: przestalo dzialac chyba set na przekazanej tablicy nie dziala, a dzialal na konkretnej
 const delateDuplicateAndUndefined = () => {
   listSkuArr = [...new Set(listSkuArr)];
 
@@ -48,6 +45,8 @@ const delateDuplicateAndUndefined = () => {
     listSkuArr.splice(listSkuArr.indexOf(undefined), 1);
   }
 };
+
+// TODO: pobawic się filter(), aby nie robic 'undefined' w tablicy kty warunki niespelnione
 const checkSku = (sku) => {
   //remove zero
   sku = Number(sku);
@@ -80,15 +79,17 @@ const copySku = (result) => {
 
 //Array with sku generators
 const generateInputlistSkuArr = (input) => {
-  const splitInputText = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
+  const inputWords = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
 
-  for (let pieceOfInputText of splitInputText) {
-    const checkedSku = checkSku(pieceOfInputText);
+  for (let word of inputWords) {
+    word = Math.abs(word);
+    const checkedSku = checkSku(word);
     listSkuArr.push(checkedSku);
   }
 };
 const generateSkuFromMessageArr = (input) => {
-  const splitInputText = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
+  const inputWords = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
+
 
   const extractorSkuFromLink = (xKomLink) => {
     const skuFromLink = new RegExp(/\/p\/(\d*)/);
@@ -96,36 +97,34 @@ const generateSkuFromMessageArr = (input) => {
     skuFromInputLink = checkSku(skuFromInputLink);
     listSkuArr.push(skuFromInputLink);
   };
+  // ostatnia konwersacja z chatem jak to zoptymalizowac, ale mysle ze da sie uprosic bardziej niz wskazal
 
   const extractorSkuFromText = (beforeSku) => {
-    const foundIndex = splitInputText.indexOf(beforeSku);
-    splitInputText[foundIndex] = 'delated';
-    let skuFromText = splitInputText[foundIndex + 1];
-    if (skuFromText.endsWith(')')) {
-      skuFromText = skuFromText.replace(/\)$/, '');
-    }
-    skuFromText = checkSku(skuFromText);
+    const foundIndex = inputWords.indexOf(beforeSku);
+    delete inputWords[foundIndex];
+    let skuFromText = inputWords[foundIndex + 1];
+    skuFromText = checkSku(parseInt(skuFromText));
+
     listSkuArr.push(skuFromText);
   };
 
-  for (let pieceOfInputText of splitInputText) {
-    if (pieceOfInputText.includes('https://www.x-kom.pl/p/'))
-      extractorSkuFromLink(pieceOfInputText);
+  for (let word of inputWords) {
+    if (word.includes('https://www.x-kom.pl/p/')) extractorSkuFromLink(word);
 
     if (
-      pieceOfInputText === 'x-kom:' ||
-      pieceOfInputText === 'xkom:' ||
-      pieceOfInputText === 'sku:' ||
-      pieceOfInputText === 'sku'
+      word === 'x-kom:' ||
+      word === 'xkom:' ||
+      word === 'sku:' ||
+      word === 'sku' ||
+      word === 'code:'
     )
-      extractorSkuFromText(pieceOfInputText);
-
-    if (pieceOfInputText.includes('https://www.x-kom.pl/lista/'))
-      extractorSkuFromList(pieceOfInputText);
+      extractorSkuFromText(word);
   }
 };
 
 //List to copy and link to list generators
+
+//TODO: pobawic sie join() w renderlinkToListSku, zamienia tablice na stronh, argument wskazuje co bedzie pomiedzy elementami z tablicy, wiec pewnie bez petli to mozna
 const renderListSkuToCopy = (arr) => {
   const skuList = arr.map((sku) => `${sku}<br>`);
   resultList = skuList.join('');
@@ -149,56 +148,32 @@ const renderlinkToListSku = (arr) => {
   }
 };
 
-//Push-button functions
-// const displaySkurenderListSkuToCopyInput = () => {
-//   clearlistSku();
-//   generateInputlistSkuArr(inputSku.value);
-//   delateDuplicateAndUndefined();
-//   renderListSkuToCopy(listSkuArr);
-//   copyskuListButton.classList.remove('no_active');
-//   resultSkuFromInput.innerHTML = resultList;
-//   if (!resultSkuFromInput.innerHTML) {
-//     resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
-//     copyskuListButton.classList.add('no_active');
-//   }
-// };
-// const displaySkuListLinkInput = () => {
-//   copyskuListButton.classList.add('no_active');
-//   clearlistSku();
-//   generateInputlistSkuArr(inputSku.value);
-//   delateDuplicateAndUndefined();
-//   renderlinkToListSku(listSkuArr);
-//   resultSkuFromInput.innerHTML = resultLink;
-//   if (!resultSkuFromInput.innerHTML) {
-//     resultSkuFromInput.innerHTML = 'Wklej sku oddzielone spacją lub enterem';
-//   }
-// };
-
-const displaySkurenderListSkuToCopyMessage = () => {
-  clearlistSku();
-  generateSkuFromMessageArr(inputMessage.value);
-  if (listSkuArr.length === 0) {
-    generateInputlistSkuArr(inputMessage.value);
-  }
-  delateDuplicateAndUndefined();
-  renderListSkuToCopy(listSkuArr);
+const displaySkuRenderListSkuToCopyMessage = () => {
+  const displayAsLink = false;
+  displaySkuListMessage(displayAsLink);
   copyListFromMessageButton.classList.remove('no_active');
-  resultSkuFromMessage.innerHTML = resultList;
-  if (!resultSkuFromMessage.innerHTML) {
-    resultSkuFromMessage.innerHTML = 'Nie znalazłem sku w tym tekście';
-    copyListFromMessageButton.classList.add('no_active');
-  }
 };
+
 const displaySkuListLinkMessage = () => {
+  const displayAsLink = true;
+  displaySkuListMessage(displayAsLink);
   copyListFromMessageButton.classList.add('no_active');
+};
+
+const displaySkuListMessage = (displayAsLink) => {
   clearlistSku();
   generateSkuFromMessageArr(inputMessage.value);
-  if (listSkuArr.length === 0) {
+  if (!listSkuArr.length) {
     generateInputlistSkuArr(inputMessage.value);
   }
   delateDuplicateAndUndefined();
-  renderlinkToListSku(listSkuArr);
-  resultSkuFromMessage.innerHTML = resultLink;
+  if (displayAsLink) {
+    renderlinkToListSku(listSkuArr);
+    resultSkuFromMessage.innerHTML = resultLink;
+  } else {
+    renderListSkuToCopy(listSkuArr);
+    resultSkuFromMessage.innerHTML = resultList;
+  }
   if (!resultSkuFromMessage.innerHTML) {
     resultSkuFromMessage.innerHTML = 'Nie znalazłem sku w tym tekście';
   }
@@ -244,23 +219,13 @@ const displayOrderLink = () => {
 };
 
 //Event Listeners
-// skuListButton.addEventListener('click', displaySkurenderListSkuToCopyInput);
-// skuLinkButton.addEventListener('click', displaySkuListLinkInput);
 skuListFromMessageButton.addEventListener(
   'click',
-  displaySkurenderListSkuToCopyMessage
+  displaySkuRenderListSkuToCopyMessage
 );
 skuLinkFromMessageButton.addEventListener('click', displaySkuListLinkMessage);
 orderLinkButton.addEventListener('click', displayOrderLink);
 
-// clearSkuInputButton.addEventListener('click', () => {
-//   if (inputSku.value == '') {
-//     resultSkuFromInput.innerHTML = '';
-//     copyskuListButton.classList.add('no_active');
-//     resultSkuFromInput.classList.remove('selected');
-//   }
-//   inputSku.value = '';
-// });
 clearMessageInputButton.addEventListener('click', () => {
   if (inputMessage.value == '') {
     resultSkuFromMessage.innerHTML = '';
@@ -277,21 +242,15 @@ clearOrderInputButton.addEventListener('click', () => {
   inputOrderNumber.value = '';
 });
 
-// copyskuListButton.addEventListener('click', () => {
-//   copySku(resultSkuFromInput);
-// });
 copyListFromMessageButton.addEventListener('click', () => {
   copySku(resultSkuFromMessage);
 });
-// resultSkuFromInput.addEventListener('click', () => {
-//   resultSkuFromInput.classList.remove('selected');
-// });
+
 resultSkuFromMessage.addEventListener('click', () => {
   resultSkuFromMessage.classList.remove('selected');
 });
 
 //DARK MODE
-
 const switchButton = document.querySelector('header button');
 let theme = localStorage.getItem('theme');
 

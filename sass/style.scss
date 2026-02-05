@@ -10,7 +10,7 @@ $light-color: #fff;
 $black-color: rgb(35, 35, 35);
 $dark-color: rgb(39, 39, 39);
 $grey-color: rgb(128, 128, 128);
-$light-grey-color: rgb(215, 215, 215);
+$light-grey-color: rgb(244, 244, 244);
 
 $shadow: 0 5px 14px -5px rgba(0, 0, 0, 1);
 
@@ -25,6 +25,7 @@ $font-text: 'Lato', sans-serif;
 //
 
 body {
+  background-color: $light-grey-color;
   margin: 0 auto;
   color: $dark-color;
   font-weight: 300;
@@ -96,6 +97,7 @@ main {
 }
 
 .tool {
+  background-color: $light-color;
   position: relative;
   margin: 12px;
   display: flex;
@@ -114,6 +116,7 @@ h1 {
 
 textarea,
 input {
+  background-color: transparent;
   padding: 12px 20px 86px;
   width: 80%;
   border: 2px solid;
@@ -288,8 +291,7 @@ footer a {
 .dark input,
 .dark textarea {
   color: $light-color;
-  background-color: $dark-color;
-  color: $light-color;
+  background-color: transparent;
 }
 
 .dark input:focus,
