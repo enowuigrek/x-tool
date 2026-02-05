@@ -47,7 +47,8 @@ header {
   display: flex;
   flex-wrap: nowrap;
   height: 64px;
-  margin-top: 12px;
+  // border-bottom: solid $x-kom-light-blue-color;
+  margin-top: 36px;
   margin-bottom: 66px;
   background: rgb(245, 245, 245);
   box-shadow: rgb(0 0 0 / 64%) 0px 2px 8px -5px;
@@ -114,7 +115,7 @@ a {
   align-items: center;
   width: 33em;
   height: min-content;
-  border-radius: 5px;
+  border-radius: 12px;
   background-color: $light-color;
   box-shadow: $shadow;
 }

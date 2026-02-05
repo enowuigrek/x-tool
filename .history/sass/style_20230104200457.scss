@@ -11,7 +11,7 @@ $x-kom-pink-color: rgb(250, 0, 100);
 $x-kom-blue-color-hover: rgb(0, 112, 204);
 $light-color: #fff;
 
-$shadow: rgb(0 0 0 / 8%) 0px 2px 58px 0px, rgb(0 0 0 / 8%) 0px 0px 36px 12px;
+$shadow: rgb(0 0 0 / 8%) 0px 2px 58px 0px, rgb(0 0 0 / 8%) 0px 0px 2px 1px;
 
 /* Fonts */
 $font-text: 'Lato', sans-serif;
@@ -39,7 +39,7 @@ body {
 .container {
   margin: 0 auto;
   height: 100vh;
-  min-height: 100vh;
+  background-color: $x-kom-light-blue-color;
 }
 
 header {
@@ -47,10 +47,8 @@ header {
   display: flex;
   flex-wrap: nowrap;
   height: 64px;
-  margin-top: 12px;
-  margin-bottom: 66px;
-  background: rgb(245, 245, 245);
-  box-shadow: rgb(0 0 0 / 64%) 0px 2px 8px -5px;
+  background-color: transparent;
+  border-bottom: solid $x-kom-blue-color;
 }
 
 header img {
@@ -58,12 +56,16 @@ header img {
   margin: auto 52px;
 }
 
+// main {
+//   background-color: $x-kom-light-blue-color;
+// }
+
 textarea {
   padding: 12px 20px 86px;
   width: 80%;
   border: 2px solid;
   color: rgb(128, 128, 128);
-  border-radius: 4px;
+  border-radius: 2px;
   resize: none;
 }
 
@@ -71,7 +73,7 @@ input {
   padding: 12px 20px 12px;
   border: 2px solid;
   color: rgb(128, 128, 128);
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 button {
@@ -91,6 +93,14 @@ button {
     background-color: $x-kom-blue-color-hover;
   }
 }
+
+// .display {
+//   opacity: 0;
+// }
+
+// .active {
+//   opacity: 1;
+// }
 
 ul {
   display: flex;
@@ -114,7 +124,7 @@ a {
   align-items: center;
   width: 33em;
   height: min-content;
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: $light-color;
   box-shadow: $shadow;
 }
@@ -138,12 +148,4 @@ a {
 
 .order__link {
   margin-bottom: 12px;
-}
-footer {
-  display: flex;
-  height: 24px;
-  color: red;
-  padding-right: 36px;
-  justify-content: right;
-  background-color: $x-kom-light-blue-color;
 }

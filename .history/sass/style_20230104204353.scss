@@ -3,6 +3,7 @@
 /* Colors */
 
 $x-kom-light-blue-color: rgb(15, 210, 255);
+$x-kom-light-blue-color-background: rgba(15, 211, 255, 0.202);
 $x-kom-blue-color: rgb(0, 130, 250);
 $x-kom-light-violet-color: rgb(195, 130, 250);
 $x-kom-violet-color: rgb(130, 80, 250);
@@ -40,6 +41,7 @@ body {
   margin: 0 auto;
   height: 100vh;
   min-height: 100vh;
+  background-color: $x-kom-light-blue-color-background;
 }
 
 header {
@@ -47,10 +49,8 @@ header {
   display: flex;
   flex-wrap: nowrap;
   height: 64px;
-  margin-top: 12px;
-  margin-bottom: 66px;
-  background: rgb(245, 245, 245);
-  box-shadow: rgb(0 0 0 / 64%) 0px 2px 8px -5px;
+  border-bottom: solid $x-kom-light-blue-color;
+  margin-bottom: 36px;
 }
 
 header img {
@@ -92,6 +92,14 @@ button {
   }
 }
 
+// .display {
+//   opacity: 0;
+// }
+
+// .active {
+//   opacity: 1;
+// }
+
 ul {
   display: flex;
   flex-direction: column;
@@ -114,7 +122,7 @@ a {
   align-items: center;
   width: 33em;
   height: min-content;
-  border-radius: 5px;
+  border-radius: 12px;
   background-color: $light-color;
   box-shadow: $shadow;
 }
@@ -140,10 +148,6 @@ a {
   margin-bottom: 12px;
 }
 footer {
-  display: flex;
-  height: 24px;
-  color: red;
-  padding-right: 36px;
-  justify-content: right;
-  background-color: $x-kom-light-blue-color;
+  height: 24px;;
+  background-color: black;
 }
