@@ -73,9 +73,7 @@ const copySku = (result) => {
   let selObj = window.getSelection();
   selObj.selectAllChildren(result);
   document.execCommand('copy');
-  setTimeout(() => {
-    selObj.removeAllRanges()
-  }, .1);
+  selObj.removeAllRanges()
   setTimeout(() => {
     result.classList.remove('copied');
   }, 150);
