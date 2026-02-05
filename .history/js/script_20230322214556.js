@@ -188,7 +188,7 @@ const displaySkuListLinkMessage = () => {
   }
 };
 
-//Event Listeners
+//
 skuListButton.addEventListener('click', displaySkuListToCopyInput);
 skuLinkButton.addEventListener('click', displaySkuListLinkInput);
 skuListFromMessageButton.addEventListener('click', displaySkuListToCopyMessage);
@@ -212,12 +212,15 @@ clearMessageInputButton.addEventListener('click', () => {
 copyskuListButton.addEventListener('click', () => {
   copySku(resultSkuFromInput);
 });
+
 copyListFromMessageButton.addEventListener('click', () => {
   copySku(resultSkuFromMessage);
 });
+//
 resultSkuFromInput.addEventListener('click', () => {
   resultSkuFromInput.classList.remove('selected')
 });
+
 resultSkuFromMessage.addEventListener('click', () => {
-  resultSkuFromMessage.classList.remove('selected')
+  resultSkuFromInput.classList.remove('selected')
 });

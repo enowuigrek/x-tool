@@ -219,5 +219,5 @@ resultSkuFromInput.addEventListener('click', () => {
   resultSkuFromInput.classList.remove('selected')
 });
 resultSkuFromMessage.addEventListener('click', () => {
-  resultSkuFromMessage.classList.remove('selected')
+  resultSkuFromInput.classList.remove('selected')
 });

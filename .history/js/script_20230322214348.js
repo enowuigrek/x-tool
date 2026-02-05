@@ -188,11 +188,12 @@ const displaySkuListLinkMessage = () => {
   }
 };
 
-//Event Listeners
+//
 skuListButton.addEventListener('click', displaySkuListToCopyInput);
 skuLinkButton.addEventListener('click', displaySkuListLinkInput);
 skuListFromMessageButton.addEventListener('click', displaySkuListToCopyMessage);
 skuLinkFromMessageButton.addEventListener('click', displaySkuListLinkMessage);
+//
 clearSkuInputButton.addEventListener('click', () => {
   if (inputSku.value == '') {
     resultSkuFromInput.innerHTML = '';
@@ -209,15 +210,19 @@ clearMessageInputButton.addEventListener('click', () => {
   }
   inputMessage.value = '';
 });
+//
 copyskuListButton.addEventListener('click', () => {
   copySku(resultSkuFromInput);
 });
+
 copyListFromMessageButton.addEventListener('click', () => {
   copySku(resultSkuFromMessage);
 });
+//
 resultSkuFromInput.addEventListener('click', () => {
   resultSkuFromInput.classList.remove('selected')
 });
+
 resultSkuFromMessage.addEventListener('click', () => {
-  resultSkuFromMessage.classList.remove('selected')
+  resultSkuFromInput.classList.remove('selected')
 });

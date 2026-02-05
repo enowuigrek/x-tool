@@ -54,22 +54,6 @@ const checkSku = (sku) => {
     return '00' + sku;
   }
 };
-const copySku = (result) => {
-
-  if (result.textContent.includes('Wklej sku oddzielone spacją lub enterem') ||
-    result.textContent.includes('Nie znalazłem sku w tym tekście')
-  ) {
-    return;
-  }
-  result.classList.add('selected');
-  result.classList.add('copied');
-  let selObj = window.getSelection();
-    selObj.selectAllChildren(result);
-    document.execCommand('copy');
-  setTimeout(() => {
-    result.classList.remove('copied');
-  }, 150);
-};
 
 //Array with sku generators
 const generateInputlistSkuArr = (input) => {
@@ -188,11 +172,12 @@ const displaySkuListLinkMessage = () => {
   }
 };
 
-//Event Listeners
+//
 skuListButton.addEventListener('click', displaySkuListToCopyInput);
 skuLinkButton.addEventListener('click', displaySkuListLinkInput);
 skuListFromMessageButton.addEventListener('click', displaySkuListToCopyMessage);
 skuLinkFromMessageButton.addEventListener('click', displaySkuListLinkMessage);
+//
 clearSkuInputButton.addEventListener('click', () => {
   if (inputSku.value == '') {
     resultSkuFromInput.innerHTML = '';
@@ -209,15 +194,38 @@ clearMessageInputButton.addEventListener('click', () => {
   }
   inputMessage.value = '';
 });
+//
 copyskuListButton.addEventListener('click', () => {
   copySku(resultSkuFromInput);
 });
+
 copyListFromMessageButton.addEventListener('click', () => {
   copySku(resultSkuFromMessage);
 });
+//
 resultSkuFromInput.addEventListener('click', () => {
   resultSkuFromInput.classList.remove('selected')
-});
+})
+
 resultSkuFromMessage.addEventListener('click', () => {
-  resultSkuFromMessage.classList.remove('selected')
-});
+  resultSkuFromInput.classList.remove('selected')
+})
+
+// --- copy test --- //
+
+const copySku = (result) => {
+
+  if (result.textContent.includes('Wklej sku oddzielone spacją lub enterem') ||
+    result.textContent.includes('Nie znalazłem sku w tym tekście')
+  ) {
+    return;
+  }
+  result.classList.add('selected');
+  result.classList.add('copied');
+  let selObj = window.getSelection();
+    selObj.selectAllChildren(result);
+    document.execCommand('copy');
+  setTimeout(() => {
+    result.classList.remove('copied');
+  }, 150);
+};

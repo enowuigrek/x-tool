@@ -55,7 +55,7 @@ header h1 {
   position: relative;
   left: 18px;
   height: 24px;
-  margin: auto 36px;
+  margin: auto 52px;
 }
 
 main {
@@ -161,14 +161,14 @@ button {
 
 .no_active {
   background-color: $light-grey-color;
-  cursor: default;
+  cursor: 
   ;
   &:hover {
     background-color: $light-grey-color;
   }
 }
 
-.copied{
+.selected.copied{
   color: $grey-color;
 }
 

@@ -188,7 +188,7 @@ const displaySkuListLinkMessage = () => {
   }
 };
 
-//Event Listeners
+//
 skuListButton.addEventListener('click', displaySkuListToCopyInput);
 skuLinkButton.addEventListener('click', displaySkuListLinkInput);
 skuListFromMessageButton.addEventListener('click', displaySkuListToCopyMessage);
@@ -218,6 +218,7 @@ copyListFromMessageButton.addEventListener('click', () => {
 resultSkuFromInput.addEventListener('click', () => {
   resultSkuFromInput.classList.remove('selected')
 });
+
 resultSkuFromMessage.addEventListener('click', () => {
-  resultSkuFromMessage.classList.remove('selected')
+  resultSkuFromInput.classList.remove('selected')
 });
