@@ -52,4 +52,5 @@ let generateSku = () => {
   };
   dispaySkuToCopy.innerHTML = resultSkuToCopy;
 };
+
 generationButton.addEventListener('click', generateSku);

@@ -12,6 +12,7 @@ $wrong-sku-color: rgb(192, 0, 0);
 $font-text: 'Lato', sans-serif;
 
 /* Global */
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -70,7 +71,6 @@ ul {
   list-style-type: none;
 }
 
-/* Class */
 .box {
   margin: 80px 20px;
   display: flex;

@@ -28,11 +28,15 @@ let generateSku = () => {
     else {
       let singleWrongSku = pieceOfInputText;
       listWrongSku.push(singleWrongSku);
-    };
+    }
+
   };
+
   // wyciąganie SKU z linku
   // const skuFrominputText = skuFromProductLinkMatcher.exec(pieceOfInputText)[1];
   // listCorrectSku.push(skuFrominputText);
+
+
   for (let singleWrongSku of listWrongSku) {
     const listElementWrongSku = '<li>' + singleWrongSku + '</li>'
     resultWrongSku += listElementWrongSku;
@@ -50,6 +54,8 @@ let generateSku = () => {
     const listElementSku = '<li>' + singleSku + '</li>'
     resultSkuToCopy += listElementSku;
   };
+
   dispaySkuToCopy.innerHTML = resultSkuToCopy;
 };
+
 generationButton.addEventListener('click', generateSku);

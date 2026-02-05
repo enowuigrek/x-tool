@@ -8,6 +8,7 @@ const dispayWrongSku = document.querySelector('.wrong__sku');
 const skuFromProductLinkMatcher = new RegExp(/\/p\/(\d*)\-/);
 
 let generateSku = () => {
+
   const inputText = input.value;
   const splitInputTextArray = inputText.split(/\r?\n/);
 
@@ -18,22 +19,30 @@ let generateSku = () => {
   let resultWrongSku = '';
 
   for (let pieceOfInputText of splitInputTextArray) {
+
     //zmienia w number, aby pozbyć się ewentualnych zer z przodu,po zmiana z powrotem na string
     pieceOfInputText *= 1;
     pieceOfInputText += '';
+
     if (pieceOfInputText.length <= 7 && pieceOfInputText.length >= 4) {
+
       let singleSkuToCopy = pieceOfInputText;
       listCorrectSku.push(singleSkuToCopy);
     }
     else {
       let singleWrongSku = pieceOfInputText;
       listWrongSku.push(singleWrongSku);
-    };
+    }
+
   };
-  // wyciąganie SKU z linku
-  // const skuFrominputText = skuFromProductLinkMatcher.exec(pieceOfInputText)[1];
-  // listCorrectSku.push(skuFrominputText);
+
+  // narazie zakomentowane wyciąganie SKU z linku
+  //   const skuFrominputText = skuFromProductLinkMatcher.exec(pieceOfInputText)[1];
+    //   listCorrectSku.push(skuFrominputText);
+
+
   for (let singleWrongSku of listWrongSku) {
+
     const listElementWrongSku = '<li>' + singleWrongSku + '</li>'
     resultWrongSku += listElementWrongSku;
   };
@@ -41,15 +50,19 @@ let generateSku = () => {
   dispayWrongSku.innerHTML = resultWrongSku;
 
   for (let singleSku of listCorrectSku) {
+
     let addZero = () => {
-      if (singleSku.length > 6) {
+      if (parseInt(singleSku) && singleSku.length > 6) {
         singleSku = '00' + singleSku
       };
     };
     addZero();
+
     const listElementSku = '<li>' + singleSku + '</li>'
     resultSkuToCopy += listElementSku;
   };
+
   dispaySkuToCopy.innerHTML = resultSkuToCopy;
 };
+
 generationButton.addEventListener('click', generateSku);

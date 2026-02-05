@@ -50,6 +50,8 @@ let generateSku = () => {
     const listElementSku = '<li>' + singleSku + '</li>'
     resultSkuToCopy += listElementSku;
   };
+
   dispaySkuToCopy.innerHTML = resultSkuToCopy;
 };
+
 generationButton.addEventListener('click', generateSku);
