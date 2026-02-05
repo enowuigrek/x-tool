@@ -6,7 +6,6 @@ const inputLinks = document.getElementById('input_links');
 const inputOrderNumber = document.getElementById('input_order_number');
 //BUTTONS
 const generationSkuButton = document.getElementById('generation_sku_button');
-const generationListButton = document.getElementById('generation_list_button');
 const generationSkuFromMessageButton = document.getElementById(
   'generation_sku_from_message_button'
 );
@@ -86,41 +85,6 @@ const generateSku = () => {
   }
   displaySkuToCopy.innerHTML = resultSku;
   displayWrongSku.innerHTML = resultWrongSku;
-};
-const generateList = () => {
-  //TODO: Pozmieniać nazwy zmiennych. InputSku i InputText w tej formie są już dziwne. generateSku też.
-  let resultSku = '';
-
-  const listCorrectSku = [];
-  const listWrongSku = [];
-
-  const input = inputSku.value;
-  const splitInputTextArray = input.split(/\r?\n/);
-
-  for (let pieceOfInputText of splitInputTextArray) {
-    pieceOfInputText = removeZero(pieceOfInputText);
-
-    // TODO: Jest do tego wydzielona funkcja ale bez else. Narazie zostawiam, bo potrzebuje błędne sku
-    if (pieceOfInputText.length <= 7 && pieceOfInputText.length >= 4) {
-      listCorrectSku.push(pieceOfInputText);
-    } else {
-      listWrongSku.push(pieceOfInputText);
-    }
-  }
-
-  let skuToLink = '';
-
-  for (let sku of listCorrectSku) {
-    sku = addZero(sku);
-    sku = `${sku}%2B`;
-    skuToLink += sku;
-  }
-
-  skuToLink = skuToLink.slice(0,-3);
-  resultSku = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
-  console.log(resultSku);
-
-  displaySkuToCopy.innerHTML = resultSku;
 };
 const generateSkuFromMessage = () => {
   const input = inputLinks.value;
@@ -214,15 +178,17 @@ const generateLinkFromMessage = () => {
   }
 
   let skuToLink = '';
+
   for (let sku of listSkuND) {
     sku = `${sku}%2B`;
     skuToLink += sku;
   }
   skuToLink = skuToLink.slice(0,-3);
-  resultSkuToCopyFromLinks = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
-  console.log(resultSkuToCopyFromLinks);
+  resultSkuToCopyFromLinks = `https://www.x-kom.pl/szukaj?q=${skuToLink}`
 
+  console.log(listSkuND);
   displaySkuToCopyFromLinks.innerHTML = resultSkuToCopyFromLinks;
+
 };
 const generateOrderLink = () => {
   let linkBegin = '';
@@ -256,7 +222,6 @@ const generateOrderLink = () => {
     orderLink = linkBegin + orderNumber;
 
     const listElementOrderLink = `<a href= ${orderLink} target="blank"> ${orderNumber} </a>`;
-    console.log(listElementOrderLink);
     resultOrderLink += listElementOrderLink;
     displayOrderLink.innerHTML = resultOrderLink;
   } else {
@@ -268,7 +233,6 @@ const generateOrderLink = () => {
 };
 
 generationSkuButton.addEventListener('click', generateSku);
-generationListButton.addEventListener('click', generateList);
 generationSkuFromMessageButton.addEventListener(
   'click',
   generateSkuFromMessage

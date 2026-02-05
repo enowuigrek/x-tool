@@ -75,7 +75,7 @@ const generateSku = () => {
   }
 
   for (let singleSku of listCorrectSku) {
-    singleSku = addZero(singleSku);
+    singleSku = checkSku(singleSku);
     singleSku = `${singleSku} </br>`;
     resultSku += singleSku;
   }

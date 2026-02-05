@@ -6,7 +6,6 @@ const inputLinks = document.getElementById('input_links');
 const inputOrderNumber = document.getElementById('input_order_number');
 //BUTTONS
 const generationSkuButton = document.getElementById('generation_sku_button');
-const generationListButton = document.getElementById('generation_list_button');
 const generationSkuFromMessageButton = document.getElementById(
   'generation_sku_from_message_button'
 );
@@ -108,16 +107,21 @@ const generateList = () => {
     }
   }
 
-  let skuToLink = '';
-
   for (let sku of listCorrectSku) {
-    sku = addZero(sku);
+    sku = addZero(singleSku);
+    singleSku = `${singleSku} </br>`;
+    resultSku += singleSku;
+  }
+
+  displaySkuToCopy.innerHTML = resultSku;
+
+  let skuToLink = '';
+  for (let sku of listSkuND) {
     sku = `${sku}%2B`;
     skuToLink += sku;
   }
-
   skuToLink = skuToLink.slice(0,-3);
-  resultSku = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
+  resultSku = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> lista </a>`
   console.log(resultSku);
 
   displaySkuToCopy.innerHTML = resultSku;
@@ -219,7 +223,7 @@ const generateLinkFromMessage = () => {
     skuToLink += sku;
   }
   skuToLink = skuToLink.slice(0,-3);
-  resultSkuToCopyFromLinks = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
+  resultSkuToCopyFromLinks = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> lista </a>`
   console.log(resultSkuToCopyFromLinks);
 
   displaySkuToCopyFromLinks.innerHTML = resultSkuToCopyFromLinks;
@@ -268,7 +272,6 @@ const generateOrderLink = () => {
 };
 
 generationSkuButton.addEventListener('click', generateSku);
-generationListButton.addEventListener('click', generateList);
 generationSkuFromMessageButton.addEventListener(
   'click',
   generateSkuFromMessage

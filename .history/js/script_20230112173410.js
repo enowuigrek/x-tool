@@ -6,7 +6,6 @@ const inputLinks = document.getElementById('input_links');
 const inputOrderNumber = document.getElementById('input_order_number');
 //BUTTONS
 const generationSkuButton = document.getElementById('generation_sku_button');
-const generationListButton = document.getElementById('generation_list_button');
 const generationSkuFromMessageButton = document.getElementById(
   'generation_sku_from_message_button'
 );
@@ -87,41 +86,6 @@ const generateSku = () => {
   displaySkuToCopy.innerHTML = resultSku;
   displayWrongSku.innerHTML = resultWrongSku;
 };
-const generateList = () => {
-  //TODO: Pozmieniać nazwy zmiennych. InputSku i InputText w tej formie są już dziwne. generateSku też.
-  let resultSku = '';
-
-  const listCorrectSku = [];
-  const listWrongSku = [];
-
-  const input = inputSku.value;
-  const splitInputTextArray = input.split(/\r?\n/);
-
-  for (let pieceOfInputText of splitInputTextArray) {
-    pieceOfInputText = removeZero(pieceOfInputText);
-
-    // TODO: Jest do tego wydzielona funkcja ale bez else. Narazie zostawiam, bo potrzebuje błędne sku
-    if (pieceOfInputText.length <= 7 && pieceOfInputText.length >= 4) {
-      listCorrectSku.push(pieceOfInputText);
-    } else {
-      listWrongSku.push(pieceOfInputText);
-    }
-  }
-
-  let skuToLink = '';
-
-  for (let sku of listCorrectSku) {
-    sku = addZero(sku);
-    sku = `${sku}%2B`;
-    skuToLink += sku;
-  }
-
-  skuToLink = skuToLink.slice(0,-3);
-  resultSku = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
-  console.log(resultSku);
-
-  displaySkuToCopy.innerHTML = resultSku;
-};
 const generateSkuFromMessage = () => {
   const input = inputLinks.value;
   const splitInputTextArray = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
@@ -171,59 +135,7 @@ const generateSkuFromMessage = () => {
   displaySkuToCopyFromLinks.innerHTML = resultSkuToCopyFromLinks;
 };
 
-const generateLinkFromMessage = () => {
-  const input = inputLinks.value;
-  const splitInputTextArray = input.replace(/^\s+|\s+$/g, '').split(/\s+/);
-  const listSku = [];
-  let resultSkuToCopyFromLinks = '';
-
-  const skuFinder = (phraseBeforeSku) => {
-    const foundIndex = splitInputTextArray.indexOf(phraseBeforeSku);
-    splitInputTextArray[foundIndex] = 'delated';
-    let skuFromText = splitInputTextArray[foundIndex + 1];
-    skuFromText = checkSku(skuFromText);
-    listSku.push(skuFromText);
-  };
-  const extractorSkuFromLink = (xKomLink) => {
-    const skuFromLink = new RegExp(/\/p\/(\d*)/);
-    let skuFromInputLink = skuFromLink.exec(xKomLink)[1];
-    skuFromInputLink = checkSku(skuFromInputLink);
-    listSku.push(skuFromInputLink);
-  };
-
-  for (let pieceOfInputText of splitInputTextArray) {
-    if (pieceOfInputText.includes('https://www.x-kom.pl/p/'))
-      extractorSkuFromLink(pieceOfInputText);
-
-    if (
-      pieceOfInputText === 'x-kom:' ||
-      pieceOfInputText === 'xkom:' ||
-      pieceOfInputText === 'sku:' ||
-      pieceOfInputText === 'sku' ||
-      pieceOfInputText === '-'
-    )
-      skuFinder(pieceOfInputText);
-  }
-
-  //usunięcie duplikatów
-  const listSkuND = [...new Set(listSku)];
-
-  //jeśli w tablicy jest "undefined, (-1 oznacza, że nie ma takiego indexu)"
-  if (listSkuND.indexOf(undefined) != -1) {
-    listSkuND.splice(listSkuND.indexOf(undefined), 1);
-  }
-
-  let skuToLink = '';
-  for (let sku of listSkuND) {
-    sku = `${sku}%2B`;
-    skuToLink += sku;
-  }
-  skuToLink = skuToLink.slice(0,-3);
-  resultSkuToCopyFromLinks = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
-  console.log(resultSkuToCopyFromLinks);
-
-  displaySkuToCopyFromLinks.innerHTML = resultSkuToCopyFromLinks;
-};
+const generateLinkFromMessage = () => {};
 const generateOrderLink = () => {
   let linkBegin = '';
 
@@ -256,7 +168,6 @@ const generateOrderLink = () => {
     orderLink = linkBegin + orderNumber;
 
     const listElementOrderLink = `<a href= ${orderLink} target="blank"> ${orderNumber} </a>`;
-    console.log(listElementOrderLink);
     resultOrderLink += listElementOrderLink;
     displayOrderLink.innerHTML = resultOrderLink;
   } else {
@@ -268,7 +179,6 @@ const generateOrderLink = () => {
 };
 
 generationSkuButton.addEventListener('click', generateSku);
-generationListButton.addEventListener('click', generateList);
 generationSkuFromMessageButton.addEventListener(
   'click',
   generateSkuFromMessage

@@ -117,7 +117,7 @@ const generateList = () => {
   }
 
   skuToLink = skuToLink.slice(0,-3);
-  resultSku = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
+  resultSku = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> lista </a>`
   console.log(resultSku);
 
   displaySkuToCopy.innerHTML = resultSku;
@@ -219,7 +219,7 @@ const generateLinkFromMessage = () => {
     skuToLink += sku;
   }
   skuToLink = skuToLink.slice(0,-3);
-  resultSkuToCopyFromLinks = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> Lista na stronie </a>`
+  resultSkuToCopyFromLinks = `<a href=https://www.x-kom.pl/szukaj?q=${skuToLink} target="blank"> lista </a>`
   console.log(resultSkuToCopyFromLinks);
 
   displaySkuToCopyFromLinks.innerHTML = resultSkuToCopyFromLinks;

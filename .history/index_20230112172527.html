@@ -27,11 +27,9 @@
               id="input_sku"
               placeholder="lista sku do sprawdzenia"
             ></textarea>
-            <div>
-              <button id="generation_sku_button">SKU</button>
-              <button id="generation_list_button">Link do listy</button>
-              <!-- <i class="fas fa-shopping-cart cart__icon"></i> -->
-            </div>
+            <button id="generation_sku_button">Sprawdź</button>
+            <h1>SKU do skopiowania</h1>
+            <!-- <i class="fas fa-shopping-cart cart__icon"></i> -->
             <p class="sku_to_copy"></p>
           </div>
           <!-- SKU Z TEKSU -->
@@ -41,14 +39,13 @@
               id="input_links"
               placeholder="wiadomość od Klienta"
             ></textarea>
-            <div>
-              <button id="generation_sku_from_message_button">
-                SKU
-              </button>
-              <button id="generation_link_from_message_button">
-                Link do listy
-              </button>
-            </div>
+            <button id="generation_sku_from_links_button">
+              Zrób SKU
+            </button>
+            <button id="generation_sku_from_links_button">
+              Zrób SKU
+            </button>
+            <h1>SKU do skopiowania</h1>
             <p class="sku_to_copy_from_links"></p>
           </div>
           <!-- GENERATOR LINKU DO ZAMÓWIENIA -->
@@ -58,9 +55,10 @@
                 id="input_order_number"
                 placeholder="numer zamówienia"
               ></input>
-            <button id="generation_order_link_button">
+            <button class="generation_order_link_button">
               Generuj link
             </button>
+            <h1>Link</h1>
             <p class="order_link"></p>
           </div>
         </div>

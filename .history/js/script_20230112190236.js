@@ -55,10 +55,8 @@ const checkSku = (sku) => {
 const generateSku = () => {
   //TODO: Pozmieniać nazwy zmiennych. InputSku i InputText w tej formie są już dziwne. generateSku też.
   let resultSku = '';
-  let resultWrongSku = '';
 
   const listCorrectSku = [];
-  const listWrongSku = [];
 
   const input = inputSku.value;
   const splitInputTextArray = input.split(/\r?\n/);
@@ -75,7 +73,7 @@ const generateSku = () => {
   }
 
   for (let singleSku of listCorrectSku) {
-    singleSku = addZero(singleSku);
+    singleSku = checkSku(singleSku);
     singleSku = `${singleSku} </br>`;
     resultSku += singleSku;
   }
@@ -111,7 +109,6 @@ const generateList = () => {
   let skuToLink = '';
 
   for (let sku of listCorrectSku) {
-    sku = addZero(sku);
     sku = `${sku}%2B`;
     skuToLink += sku;
   }
