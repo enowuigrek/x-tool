@@ -1,5 +1,17 @@
 'use strict';
 
+//Aside
+const aside = document.querySelector('aside');
+const options = document.querySelector('.options');
+const skuOption = document.getElementById('sku_option');
+const orderOption = document.getElementById('order_option');
+const enigmaOption = document.getElementById('enigma_option');
+
+//Tools
+const findSku = document.getElementById('find_sku');
+const order = document.getElementById('order');
+const enigma = document.getElementById('enigma');
+
 //Inputs
 const inputMessage = document.getElementById('input_message');
 const inputOrderNumber = document.getElementById('input_order_number');
@@ -10,6 +22,9 @@ const listSkuBtn = document.getElementById('list_sku_btn');
 const linkSkuBtn = document.getElementById('link_sku_btn');
 const orderLinkBtn = document.getElementById('order_link_btn');
 const enigmaBtn = document.getElementById('enigma_btn');
+const hamburgerBtn = document.getElementById('hamburgerButton');
+const toBig = document.querySelector('.to_big');
+console.log(toBig)
 
 //Copy Button
 const copySkuBtn = document.getElementById('copy_sku');
@@ -18,6 +33,7 @@ const copySkuBtn = document.getElementById('copy_sku');
 const clearMessageInputBtn = document.getElementById('clear_message');
 const clearOrderInputBtn = document.getElementById('clear_order');
 const clearOTRSInputBtn = document.getElementById('clear_otrs');
+
 //Result
 const resultSku = document.getElementById('result_sku');
 const numberSku = document.getElementById('number_sku');
@@ -62,6 +78,19 @@ const copySku = (result) => {
     document.execCommand('copy');
     selObj.removeAllRanges();
 };
+
+//Aside
+hamburgerBtn.addEventListener('click', function () {
+    aside.classList.toggle('open');
+    hamburgerBtn.classList.toggle('open');
+    if (options.classList.contains('display_options')) {
+        options.classList.remove('display_options');
+    } else {
+        setTimeout(function () {
+            options.classList.add('display_options');
+        }, 200);
+    }
+});
 
 // SKU finder
 const findSkuInMessage = (input) => {
@@ -187,17 +216,61 @@ const renderOrderLink = () => {
 };
 
 const decipher = () => {
-    let  text = inputOTRS.value;
-    text = text.replace(/\/n/g, '<br>');  // zamienia wszystkie wystąpienia '/n' na '<br>'
-    text = text.replace(/\/r/g, '<br>');  // zamienia wszystkie wystąpienia '/r' na '<br>'
+    let text = inputOTRS.value;
+    text = text.replace(/\\n/g, '<br>');
+    text = text.replace(/\\r/g, '<br>');
     resultOTRS.innerHTML = text;
-}
+};
 
 //Event Listeners
 listSkuBtn.addEventListener('click', asList);
 linkSkuBtn.addEventListener('click', asLink);
 orderLinkBtn.addEventListener('click', renderOrderLink);
 enigmaBtn.addEventListener('click', decipher);
+
+skuOption.addEventListener('click', () => {
+    skuOption.classList.toggle('on');
+
+    if (skuOption.classList.contains('on')) {
+        findSku.classList.remove('no_display');
+        setTimeout(function() {
+            findSku.classList.remove('tool_hide');
+        })
+    } else {
+        findSku.classList.add('tool_hide');
+        setTimeout(function () {
+            findSku.classList.add('no_display');
+        }, 200);
+    }
+});
+orderOption.addEventListener('click', () => {
+    orderOption.classList.toggle('on');
+    if (orderOption.classList.contains('on')) {
+        order.classList.remove('no_display');
+        setTimeout(function() {
+            order.classList.remove('tool_hide');
+        })
+    } else {
+        order.classList.add('tool_hide');
+        setTimeout(function () {
+            order.classList.add('no_display');
+        }, 200);
+    }
+});
+enigmaOption.addEventListener('click', () => {
+    enigmaOption.classList.toggle('on');
+    if (enigmaOption.classList.contains('on')) {
+        enigma.classList.remove('no_display');
+        setTimeout(function() {
+            enigma.classList.remove('tool_hide');
+        })
+    } else {
+        enigma.classList.add('tool_hide');
+        setTimeout(function () {
+            enigma.classList.add('no_display');
+        }, 200);
+    }
+});
 
 clearMessageInputBtn.addEventListener('click', () => {
     if (!inputMessage.value) {
@@ -227,6 +300,11 @@ clearOTRSInputBtn.addEventListener('click', () => {
 copySkuBtn.addEventListener('mousedown', () => {
     copySku(resultSku);
 });
+
+toBig.addEventListener('click', () => {
+    enigma.classList.toggle('big');
+    toBig.classList.toggle('turn');
+})
 document.addEventListener('mouseup', () => {
     resultSku.classList.remove('copied');
 });
