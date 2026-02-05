@@ -2,7 +2,7 @@
 @import 'reset';
 
 body {
-    background: $light-grey;
+    background-color: $light-grey;
     margin: 0 auto;
     color: $dark;
     font-weight: 300;
@@ -25,7 +25,7 @@ header {
     width: 100%;
     height: 64px;
     z-index: 1;
-    background: $white;
+    background-color: $white;
     box-shadow: $shadow;
     transition: all 0.3s ease-in-out;
 }
@@ -39,7 +39,7 @@ header h1 {
 }
 
 header button {
-    background: $grey;
+    background-color: $grey;
     border: solid 4px $white;
     border-radius: 50px;
     cursor: pointer;
@@ -50,12 +50,12 @@ header button {
     margin: auto 54px;
     transition: all 0.3s ease-in-out;
     &:hover {
-        background: $grey;
+        background-color: $grey;
     }
 }
 
 .icon {
-    background: $white;
+    background-color: $white;
     border-radius: 100%;
     display: block;
     height: 10px;
@@ -74,7 +74,7 @@ main {
 }
 
 .tool {
-    background: $white;
+    background-color: $white;
     position: relative;
     margin: 12px;
     display: flex;
@@ -89,13 +89,13 @@ main {
     transition: all 0.3s ease-in-out;
     &:hover {
         box-shadow: $shadow-hover;
-        transform: translateY(-3px);
+        transform: translateY(-1px);
     }
 }
 
 textarea,
 input {
-    background: transparent;
+    background-color: transparent;
     padding: 12px 20px 86px;
     width: 80%;
     border: 2px solid;
@@ -129,7 +129,7 @@ textarea:focus {
 }
 
 button {
-    background: $blue;
+    background-color: $blue;
     font-size: 14px;
     color: rgb(255, 255, 255);
     border: none;
@@ -142,7 +142,7 @@ button {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     &:hover {
-        background: $button-hover;
+        background-color: $button-hover;
     }
 }
 
@@ -157,14 +157,14 @@ button {
     transform: translateX(171px);
     cursor: pointer;
     font-size: 22px;
-    background: transparent;
+    background-color: transparent;
     color: $grey;
     font-family: 'Gruppo', cursive;
     margin: 5px;
     height: 22px;
     width: 22px;
     &:hover {
-        background: transparent;
+        background-color: transparent;
         color: black;
     }
 }
@@ -173,21 +173,16 @@ button {
     display: flex;
 }
 
-.result p:nth-child(2)::before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -16px;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    background-color: $grey;
-}
-
 .result p:nth-child(2) {
     position: absolute;
     font-size: 18px;
-    transform: translate(140px, 4px);
+    transform: translateX(110px);
+    height: 36px;
+    width: 36px;
+    border: 2px solid $grey;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 32px;
 }
 
 .no_display {
@@ -200,11 +195,11 @@ button {
 }
 
 .no_active {
-    background: rgba(135, 135, 135, 0.5);
+    background-color: rgba(135, 135, 135, 0.5);
     color: $light-grey;
     cursor: default;
     &:hover {
-        background: rgb(135, 135, 135, 0.5);
+        background-color: rgb(135, 135, 135, 0.5);
     }
 }
 
@@ -221,7 +216,7 @@ a {
 
 footer {
     height: 34px;
-    background: $dark;
+    background-color: $dark;
     color: $white;
     position: fixed;
     display: flex;
@@ -249,19 +244,19 @@ footer a {
 
 .dark {
     color: $white;
-    background: $dark;
+    background-color: $dark;
 }
 
 .dark button {
-    background: $light-blue;
+    background-color: $light-blue;
     color: $dark;
     &:hover {
-        background: $dark-button-hover;
+        background-color: $dark-button-hover;
     }
 }
 
 .dark header {
-    background: $black;
+    background-color: $black;
     z-index: 1;
 }
 
@@ -275,18 +270,18 @@ footer a {
 }
 
 .dark .icon {
-    background: $dark;
+    background-color: $dark;
     transform: translateX(14px);
 }
 
 .dark .tool {
-    background: $black;
+    background-color: $black;
 }
 
 .dark input,
 .dark textarea {
     color: $white;
-    background: transparent;
+    background-color: transparent;
 }
 
 .dark input:focus,
@@ -296,29 +291,29 @@ footer a {
     box-shadow: 0 0 8px $light-blue;
 }
 
-.dark .result p:nth-child(2)::before {
-    background-color: $white;
+.dark .result p:nth-child(2) {
+    border-color: $white;
 }
 
 .dark footer {
-    background: $black;
+    background-color: $black;
     z-index: 1;
 }
 
 .dark .clear {
-    background: transparent;
+    background-color: transparent;
     color: $grey;
     &:hover {
-        background: transparent;
+        background-color: transparent;
         color: $white;
     }
 }
 
 .dark .no_active {
-    background: rgb(135, 135, 135, 0.5);
+    background-color: rgb(135, 135, 135, 0.5);
     cursor: default;
     &:hover {
-        background: rgb(135, 135, 135, 0.5);
+        background-color: rgb(135, 135, 135, 0.5);
     }
 }
 

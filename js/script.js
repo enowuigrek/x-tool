@@ -68,7 +68,7 @@ const findSkuInMessage = (input) => {
     inputWords.forEach((word, index) => {
         if (word.includes('https://www.x-kom.pl/p/')) {
             const skuFromLink = new RegExp(/\/p\/(\d*)/);
-            listSkuArr.push(skuFromLink.exec(word)[1]);
+            listSkuArr.push(checkSku(skuFromLink.exec(word)[1]));
         } else if (searchWords.includes(word)) {
             listSkuArr.push(checkSku(inputWords[index + 1]));
         }
@@ -193,6 +193,7 @@ clearMessageInputBtn.addEventListener('click', () => {
     if (!inputMessage.value) {
         resultSku.innerHTML = '';
         numberSku.innerHTML = '';
+        numberSku.classList.add('no_display');
         copySkuBtn.classList.add('no_active');
         resultSku.classList.remove('selected');
     }
@@ -209,7 +210,7 @@ clearOrderInputBtn.addEventListener('click', () => {
 copySkuBtn.addEventListener('mousedown', () => {
     copySku(resultSku);
 });
-copySkuBtn.addEventListener('mouseup', () => {
+document.addEventListener('mouseup', () => {
     resultSku.classList.remove('copied');
 });
 
