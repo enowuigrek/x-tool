@@ -111,7 +111,7 @@ a {
   margin-bottom: 12px;
 }
 
-.header {
+header {
   display: flex;
   flex-wrap: nowrap;
   height: 64px;
