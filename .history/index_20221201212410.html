@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator SKU</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+  </head>
+  <body>
+
+    <section class="header">
+      <div class ="options">
+        <h1></h1>
+        <p>SKU</p>
+        <p>ZAMÓWIENIE</p>
+      </div>
+    </section>
+    <container>
+      <!-- GENERATOR SKU -->
+      <div class="box generator__sku">
+        <h1>Generator SKU</h1>
+        <textarea
+        class="input__sku"
+        placeholder="lista sku do sprawdzenia"
+        ></textarea>
+        <button class="generation__sku__button">
+          Generuj
+        </button>
+        <h1>SKU do skopiowania</h1>
+        <ul class="sku__to__copy">
+        </ul>
+        <h1>Będne SKU</h1>
+        <ul class="wrong__sku">
+        </ul>
+      </div>
+      <!-- GENERATOR LINKU DO ZAMÓWIENIA -->
+      <div class="box generator__orders">
+        <h1>Zamówienie</h1>
+        <textarea
+        class="input__order__number"
+        placeholder="numer zamówienia"
+        ></textarea>
+        <button class="generation__order__link__button">
+          Generuj
+        </button>
+        <h1>Link</h1>
+        <ul class="order__links">
+        </ul>
+        <p><a href</p>
+      </div>
+    </container>
+    <script src="js/sku.js"></script>
+    <script src="js/link.js"></script>
+  </body>
+</html>

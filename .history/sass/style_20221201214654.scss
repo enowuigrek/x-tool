@@ -1,0 +1,128 @@
+/* Variables */
+
+/* Colors */
+$light-color: #fff;
+$button-color: rgb(0, 130, 250);
+$button-color-hover: rgb(0, 112, 204);
+$shadow: rgb(0 0 0 / 8%) 0px 2px 58px 0px,
+         rgb(0 0 0 / 8%) 0px 0px 2px 1px;
+$wrong-sku-color: rgb(192, 0, 0);
+
+/* Fonts */
+$font-text: 'Lato', sans-serif;
+
+/* Global */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1{
+  font-size: 18px;;
+}
+
+h2 {
+  margin-left: 36px;
+}
+
+body {
+  margin: 0;
+  font-family: $font-text;
+  color: black;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.7;
+  background-color: rgb(255, 255, 255);
+}
+
+container {
+  display: flex;
+  justify-content: center;
+}
+
+textarea {
+  font-family: $font-text;
+  padding: 12px 20px 86px ;
+  width: 80%;
+  border: 2px solid;
+  color: rgb(128, 128, 128);
+  border-radius: 2px;
+  resize: none;
+}
+
+button {
+  background-color: $button-color;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 9px;
+  text-decoration: none;
+  padding: 0px;
+  margin: 24px;
+  height: 40px;
+  width: 96px;
+  cursor: pointer;
+  transition: .1s;
+  &:hover {
+    background-color: $button-color-hover
+  }
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  padding: 0;
+  align-items: center;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: $button-color;
+}
+
+/* Class */
+
+.box {
+  margin: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33em;
+  height: min-content;
+  border-radius: 2px;
+  background-color: $light-color;
+  box-shadow: $shadow;
+}
+
+.tools{
+  display: flex;
+  justify-content: center;
+}
+
+.wrong__sku {
+  color: $wrong-sku-color;
+}
+
+.input__order__number {
+  padding: 12px 12px 0;
+}
+
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background-color: $button-color;
+  color: $light-color;
+}
+
+.options {
+  margin: 0;
+}
+
+.option {
+  
+  margin 66px;
+  cursor: pointer;
+}
