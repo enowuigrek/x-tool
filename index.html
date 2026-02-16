@@ -49,13 +49,15 @@
             </aside>
             <main>
                 <section class="tool" id="find_sku">
+                    <button class="close" id="close_sku">&times;</button>
                     <h1>Znajdź SKU</h1>
-                    <button class="close" id="close_sku">×</button>
-                    <button class="clear" id="clear_message">×</button>
-                    <textarea
-                            id="input_message"
-                            placeholder="wiadomość od Klienta"
-                    ></textarea>
+                    <div class="input_wrap">
+                        <textarea
+                                id="input_message"
+                                placeholder="wiadomość od Klienta"
+                        ></textarea>
+                        <button class="clear" id="clear_message">&times;</button>
+                    </div>
                     <div class="buttons">
                         <div class="sku_and_copy">
                             <button id="list_sku_btn">Szukaj</button>
@@ -71,28 +73,30 @@
                     </div>
                 </section>
                 <section class="tool" id="order">
+                    <button class="close" id="close_order">&times;</button>
                     <h1>Zamówienie</h1>
-                    <button class="close" id="close_order">x</button>
-                    <button class="clear" id="clear_order">x</button>
-                    <input
-                        id="input_order_number"
-                        placeholder="numer zamówienia"
-                    />
+                    <div class="input_wrap">
+                        <input
+                            id="input_order_number"
+                            placeholder="numer zamówienia"
+                        />
+                        <button class="clear" id="clear_order">&times;</button>
+                    </div>
                     <button id="order_link_btn">Generuj link</button>
                     <div class="result">
                         <p id="result_order_link"></p>
                     </div>
                 </section>
                 <section class="tool big" id="enigma">
+                    <button class="close" id="close_enigma">&times;</button>
                     <h1>Enigma</h1>
-                    <div class="control_buttons">
-                        <button class="close" id="close_enigma">x</button>
+                    <div class="input_wrap">
+                        <textarea
+                            id="input_otrs"
+                            placeholder="mail z formularza OTRS"
+                        ></textarea>
+                        <button class="clear" id="clear_otrs">&times;</button>
                     </div>
-                    <button class="clear" id="clear_otrs">x</button>
-                    <textarea
-                        id="input_otrs"
-                        placeholder="mail z formularza OTRS"
-                    ></textarea>
                     <div>
                         <button id="enigma_btn">Rozszyfruj</button>
                     </div>

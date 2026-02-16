@@ -31,11 +31,16 @@ button {
     transition: all 0.3s ease-in-out;
     &:hover {
         background-color: $button-hover;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 130, 250, 0.3);
+    }
+    &:active {
+        transform: translateY(0);
     }
 }
 
 header {
-    z-index: 1;
+    z-index: 2;
     top: 0;
     display: flex;
     flex-wrap: nowrap;
@@ -43,7 +48,6 @@ header {
     position: fixed;
     width: 100%;
     height: 64px;
-    z-index: 1;
     background-color: $white;
     box-shadow: $shadow;
     transition: all 0.3s ease-in-out;
@@ -69,6 +73,8 @@ header button {
     transition: all 0.3s ease-in-out;
     &:hover {
         background-color: $grey;
+        transform: none;
+        box-shadow: none;
     }
 }
 
@@ -89,20 +95,19 @@ header button {
 
 aside {
     z-index: 1;
-    // width: 42px;
-    height: 100%;
+    height: calc(100% - 100px);
+    width: 40px;
     position: fixed;
-    margin: 120px auto 0 0;
-    border-radius: 5px;
+    top: 84px;
+    left: 10px;
     box-shadow: $shadow;
-    // display: flex;
+    display: flex;
     flex-direction: column;
     background-color: $white;
-    transition: 0.3s ease;
-    &:hover {
-        box-shadow: $shadow-hover;
-        transform: translateY(-2px);
-    }
+    transition: all 0.3s ease;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 5px;
 }
 
 .hamburger {
@@ -110,20 +115,29 @@ aside {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 6px 0;
-    width: 40px;
+    flex-shrink: 0;
+    width: 32px;
+    min-width: 32px;
+    max-width: 32px;
     height: 40px;
+    margin: 6px auto 12px;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: none;
     &:hover {
         background-color: transparent;
+        transform: none;
+        box-shadow: none;
+    }
+    &:active {
+        transform: none;
     }
 }
 
-.hamburger.open {
-    transform: translateX(94px);
+aside.open .hamburger {
+    margin: 6px 6px 12px auto;
 }
 
 .line {
@@ -152,12 +166,14 @@ aside {
 }
 
 .options {
-    margin-left: 54px;
+    display: none;
 }
 
 .options_header {
     display: flex;
     align-items: center;
+    margin: 8px 0 15px;
+    padding-left: 12px;
 }
 
 .options_header h1 {
@@ -171,12 +187,13 @@ aside {
 
 aside p,
 aside a {
-    margin-left: 38px;
+    margin-left: 12px;
     color: $grey;
     line-height: 0.1;
+    transition: color 0.2s;
+    cursor: pointer;
     &:hover {
         color: $button-hover;
-        cursor: pointer;
     }
 }
 
@@ -185,23 +202,19 @@ aside a {
     color: $blue;
 }
 
-.options {
-    display: none;
-}
-
 .display_options {
-    display: block;
     display: flex;
     flex-direction: column;
 }
 
 main {
-    // max-width: 1302px;
     padding-left: 42px;
-    margin: 120px auto;
+    margin: 100px auto 60px;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
+    gap: 20px;
     transition: 0.3s;
 }
 
@@ -212,28 +225,43 @@ main {
 .tool {
     background-color: $white;
     position: relative;
-    margin: 0 10px 20px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 490px;
     height: min-content;
+    padding: 16px 20px 20px;
     border-radius: 5px;
     box-shadow: $shadow;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     &:hover {
-        box-shadow: $shadow-hover;
+        box-shadow: 0 8px 24px -8px rgba(130, 80, 250, 0.2),
+                    0 4px 16px -4px rgba(0, 130, 250, 0.15),
+                    0 2px 8px -2px rgba(250, 0, 100, 0.1);
         transform: translateY(-2px);
     }
+
+    h1 {
+        margin: 0 0 12px;
+        font-size: 18px;
+    }
+}
+
+.input_wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 textarea,
 input {
     background-color: transparent;
-    padding: 12px 20px 86px;
+    padding: 12px 30px 86px 20px;
     width: 390px;
-    border: 2px solid;
+    border: 2px solid $grey;
     color: $grey;
     border-radius: 4px;
     font-family: $font-text;
@@ -242,7 +270,7 @@ input {
 }
 
 input {
-    padding: 12px 20px 12px;
+    padding: 12px 30px 12px 20px;
 }
 
 .big textarea {
@@ -274,51 +302,58 @@ textarea:focus {
 
 .clear {
     position: absolute;
-    font-family: 'Gruppo';
-    top: 43px;
-    right: 66px;
+    top: 2px;
+    right: 38px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 18px;
+    line-height: 1;
     background-color: transparent;
     color: $grey;
-    width: 0;
-    height: 0;
-    &:hover {
-        background-color: transparent;
-        color: black;
-    }
-}
-
-.to_big {
+    width: 20px;
+    height: 20px;
     margin: 0;
-    background-color: transparent;
-    font-family: 'Gruppo';
-    color: $grey;
-    width: 9px;
-    height: 9px;
-    font-size: 64px;
-    position: absolute;
-    top: 17px;
-    right: 47px;
-    transform: rotate(90deg);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    box-shadow: none;
     &:hover {
+        opacity: 1;
         background-color: transparent;
+        transform: none;
+        box-shadow: none;
+    }
+    &:active {
+        transform: none;
     }
 }
 
 .close {
-    margin: 0;
-    background-color: transparent;
-    font-family: 'Gruppo';
-    color: $grey;
-    font-size: 44px;
     position: absolute;
-    height: 0;
-    width: 9px;
-    top: 0px;
-    right: 29px;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    background-color: transparent;
+    color: $grey;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    opacity: 0.5;
+    transition: opacity 0.2s;
     &:hover {
+        opacity: 1;
         background-color: transparent;
+        transform: none;
+        box-shadow: none;
     }
 }
 
@@ -326,18 +361,24 @@ textarea:focus {
     width: 1000px;
 }
 
-// .tool_hide {
-//     transform:translateX(-3000px)
-// }
-
 .result {
     display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    min-height: 20px;
+
+    p {
+        margin: 0 20px 12px;
+        text-align: center;
+    }
 }
 
 .result p:nth-child(2) {
     position: absolute;
     font-size: 18px;
-    right: 50px;
+    right: 20px;
+    top: 0;
     height: 36px;
     min-width: 36px;
     border: 2px solid $grey;
@@ -362,6 +403,8 @@ textarea:focus {
     cursor: default;
     &:hover {
         background-color: rgb(135, 135, 135, 0.5);
+        transform: none;
+        box-shadow: none;
     }
 }
 
@@ -387,11 +430,7 @@ textarea:focus {
 #infoForm input[type='text'],
 #infoForm input[type='number'],
 #infoForm textarea {
-    //     width: 200%;
     padding: 10px;
-    //     margin-bottom: 20px;
-    //     border: 2px solid #ccc;
-    //     border-radius: 4px;
 }
 
 table {
@@ -400,7 +439,7 @@ table {
 }
 
 footer {
-    z-index: 1;
+    z-index: 2;
     height: 34px;
     background-color: $dark;
     color: $white;
@@ -414,8 +453,9 @@ footer {
 }
 
 footer p,
-a {
+footer a {
     margin: 0 54px;
+    font-size: 12px;
 }
 
 footer a {
@@ -438,6 +478,8 @@ footer a {
     color: $dark;
     &:hover {
         background-color: $dark-button-hover;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(15, 210, 255, 0.3);
     }
 }
 
@@ -445,6 +487,11 @@ footer a {
     background-color: transparent;
     &:hover {
         background-color: transparent;
+        transform: none;
+        box-shadow: none;
+    }
+    &:active {
+        transform: none;
     }
 }
 
@@ -454,7 +501,7 @@ footer a {
 
 .dark header {
     background-color: $black;
-    z-index: 1;
+    z-index: 2;
 }
 
 .dark h1 {
@@ -505,23 +552,28 @@ footer a {
 
 .dark footer {
     background-color: black;
-    z-index: 1;
+    z-index: 2;
 }
 
-.dark .clear,
+.dark .clear {
+    background-color: transparent;
+    color: $white;
+    &:hover {
+        opacity: 1;
+        background-color: transparent;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
 .dark .close {
     background-color: transparent;
     color: $white;
     &:hover {
+        opacity: 1;
         background-color: transparent;
-    }
-}
-
-.dark .to_big {
-    color: $white;
-    background-color: transparent;
-    &:hover {
-        background-color: transparent;
+        transform: none;
+        box-shadow: none;
     }
 }
 
@@ -530,6 +582,8 @@ footer a {
     cursor: default;
     &:hover {
         background-color: rgb(135, 135, 135, 0.5);
+        transform: none;
+        box-shadow: none;
     }
 }
 
@@ -537,17 +591,14 @@ footer a {
     color: $light-blue;
 }
 
-/* Ustawienie koloru paska przewijania w poziomie (jeśli występuje) */
 ::-webkit-scrollbar {
-    background-color: black; /* Kolor tła paska przewijania */
+    background-color: black;
 }
 
-/* Ustawienie koloru "track", czyli tła paska przewijania */
 ::-webkit-scrollbar-track {
-    background-color: black; /* Kolor tła paska przewijania */
+    background-color: black;
 }
 
-/* Ustawienie koloru "thumb", czyli samego "uchwytu" paska przewijania */
 ::-webkit-scrollbar-thumb {
-    background-color: $black; /* Kolor uchwytu paska przewijania */
+    background-color: $black;
 }

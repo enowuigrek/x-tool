@@ -6,13 +6,11 @@ const options = document.querySelector('.options');
 const skuOption = document.getElementById('sku_option');
 const orderOption = document.getElementById('order_option');
 const enigmaOption = document.getElementById('enigma_option');
-const clientOption = document.getElementById('client_option');
 
 //Tools
 const findSku = document.getElementById('find_sku');
 const order = document.getElementById('order');
 const enigma = document.getElementById('enigma');
-const clientTable = document.getElementById('client_tabble');
 
 //Inputs
 const inputMessage = document.getElementById('input_message');
@@ -31,7 +29,6 @@ const enigmaBtn = document.getElementById('enigma_btn');
 const closeSkuBtn = document.getElementById('close_sku');
 const closeOrderBtn = document.getElementById('close_order');
 const closeEnigmaBtn = document.getElementById('close_enigma');
-const closeTableBtn = document.getElementById('close_table');
 
 //Copy Button
 const copySkuBtn = document.getElementById('copy_sku');
@@ -62,12 +59,23 @@ const delateDuplicateAndUndefined = () => {
     listSkuArr = listSkuArr.filter((item) => item !== undefined);
 };
 const checkSku = (sku) => {
-    sku = Number(sku);
-    sku = String(sku);
-    if (sku.length >= 5 && sku.length <= 6) {
+    if (!sku) return undefined;
+    // Usuń wszystkie nie-cyfry
+    sku = String(sku).replace(/\D/g, '');
+
+    // Sprawdź długość
+    if (sku.length >= 5 && sku.length <= 9) {
         return sku;
-    } else if (sku.length == 7) {
-        return '00' + sku;
+    }
+    return undefined;
+};
+
+const tryItIfYouCantFind = (input) => {
+    const digitGroups = input.match(/\b\d{5,9}\b/g);
+    if (digitGroups) {
+        digitGroups.forEach((group) => {
+            listSkuArr.push(checkSku(group));
+        });
     }
 };
 const copySku = (result) => {
@@ -106,25 +114,28 @@ const findSkuInMessage = (input) => {
     const searchWords = ['x-kom:', 'xkom:', 'sku:', 'sku', 'x', 'code:'];
 
     inputWords.forEach((word, index) => {
-        // Obsługa standardowych linków x-kom.pl/p/
-        if (word.includes('https://www.x-kom.pl/p/')) {
-            const skuFromLink = new RegExp(/\/p\/(\d*)/);
-            const match = skuFromLink.exec(word);
-            if (match) {
-                listSkuArr.push(checkSku(match[1]));
-            }
-        }
-        // Obsługa linków B2B x-kom.pl
-        else if (word.includes('https://b2b.x-kom.pl/Sales/Item/Index/')) {
-            const skuFromB2BLink = new RegExp(/\/Index\/(\d+)/);
+        // 1. Obsługa linków B2B x-kom.pl (sprawdzamy NAJPIERW - wyższy priorytet)
+        if (word.includes('b2b.x-kom.pl') && word.includes('/Index/')) {
+            const skuFromB2BLink = /\/Index\/(\d+)/;
             const match = skuFromB2BLink.exec(word);
             if (match) {
                 listSkuArr.push(checkSku(match[1]));
             }
         }
-        // Obsługa słów kluczowych
-        else if (searchWords.includes(word)) {
-            listSkuArr.push(checkSku(inputWords[index + 1].replace(/\D$/, '')));
+        // 2. Obsługa standardowych linków x-kom.pl/p/
+        else if (word.includes('x-kom.pl/p/')) {
+            const skuFromLink = /\/p\/(\d+)/;
+            const match = skuFromLink.exec(word);
+            if (match) {
+                listSkuArr.push(checkSku(match[1]));
+            }
+        }
+        // 3. Obsługa słów kluczowych
+        else if (searchWords.includes(word.toLowerCase())) {
+            const nextWord = inputWords[index + 1];
+            if (nextWord) {
+                listSkuArr.push(checkSku(nextWord.replace(/\D+$/g, '')));
+            }
         }
     });
 };
@@ -236,53 +247,6 @@ const decipher = () => {
     resultOTRS.innerHTML = text;
 };
 
-// Dodaj tę funkcję do twojego pliku script.js
-const generateTable = () => {
-    const data = {
-        Branża: document.getElementById('branch').value,
-        'Wielkość firmy, obrót': document.getElementById('size').value,
-        'Liczba pracowników': document.getElementById('employees').value,
-        'Liczba pracowników biurowych':
-            document.getElementById('officeWorkers').value,
-        'Wywiad z klientem, opis firmy':
-            document.getElementById('meetingSummary').value,
-        'Potencjalne potrzeby zakupowe':
-            document.getElementById('purchaseNeeds').value,
-        Asortyment: document.getElementById('assortment').value,
-        'Przewidywany obrót':
-            document.getElementById('predictedTurnover').value,
-        'Klasyfikacja wstępna': document.getElementById('initialClassification')
-            .value,
-    };
-
-    let tableHTML = "<table border='1'><tbody>";
-    Object.keys(data).forEach((key) => {
-        tableHTML += `<tr><td>${key}</td><td>${data[key]}</td></tr>`;
-    });
-    tableHTML += '</tbody></table>';
-
-    document.getElementById('tableContainer').innerHTML = tableHTML;
-};
-
-function copyTable() {
-    let tableText = '';
-    const rows = document.querySelectorAll('#tableContainer table tr');
-
-    rows.forEach((row) => {
-        let rowData = [];
-        const cells = row.querySelectorAll('td');
-        cells.forEach((cell) => {
-            rowData.push(cell.innerText);
-        });
-        tableText += rowData.join('\t') + '\r\n'; // tabulator i znak nowego wiersza
-    });
-
-    navigator.clipboard
-        .writeText(tableText)
-        .then(() => alert('Tabela skopiowana do schowka!'))
-        .catch((err) => console.error('Błąd podczas kopiowania', err));
-}
-
 //-------- Event Listeners --------
 //Buttons
 listSkuBtn.addEventListener('click', asList);
@@ -291,44 +255,19 @@ orderLinkBtn.addEventListener('click', renderOrderLink);
 enigmaBtn.addEventListener('click', decipher);
 
 //Aside Options
-skuOption.addEventListener('click', () => {
-    skuOption.classList.toggle('on');
+const toggleTool = (option, tool) => {
+    option.classList.toggle('on');
+    if (option.classList.contains('on')) {
+        tool.classList.remove('no_display');
+    } else {
+        tool.classList.add('no_display');
+    }
+};
 
-    if (skuOption.classList.contains('on')) {
-        findSku.classList.remove('no_display');
-    } else {
-        findSku.classList.add('tool_hide');
-        findSku.classList.add('no_display');
-    }
-});
-orderOption.addEventListener('click', () => {
-    orderOption.classList.toggle('on');
-    if (orderOption.classList.contains('on')) {
-        order.classList.remove('no_display');
-    } else {
-        order.classList.add('tool_hide');
-        order.classList.add('no_display');
-    }
-});
-enigmaOption.addEventListener('click', () => {
-    enigmaOption.classList.toggle('on');
-    if (enigmaOption.classList.contains('on')) {
-        enigma.classList.remove('no_display');
-    } else {
-        enigma.classList.add('tool_hide');
-        enigma.classList.add('no_display');
-    }
-});
+skuOption.addEventListener('click', () => toggleTool(skuOption, findSku));
+orderOption.addEventListener('click', () => toggleTool(orderOption, order));
+enigmaOption.addEventListener('click', () => toggleTool(enigmaOption, enigma));
 
-clientOption.addEventListener('click', () => {
-    clientOption.classList.toggle('on');
-    if (clientOption.classList.contains('on')) {
-        clientTable.classList.remove('no_display');
-    } else {
-        clientTable.classList.add('tool_hide');
-        clientTable.classList.add('no_display');
-    }
-});
 //Close
 closeSkuBtn.addEventListener('click', () => {
     skuOption.classList.remove('on');
@@ -341,10 +280,6 @@ closeOrderBtn.addEventListener('click', () => {
 closeEnigmaBtn.addEventListener('click', () => {
     enigmaOption.classList.remove('on');
     enigma.classList.add('no_display');
-});
-closeTableBtn.addEventListener('click', () => {
-    clientOption.classList.remove('on');
-    clientTable.classList.add('no_display');
 });
 
 //Clear
